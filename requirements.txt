@@ -1,2 +1,5 @@
+# Biblioteca principal para a criação da interface visual e componentes web
 streamlit
+
+# Cliente oficial para conexão de alta velocidade com a API da Groq (Llama 3.3)
 groq
