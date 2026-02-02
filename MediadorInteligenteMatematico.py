@@ -1,16 +1,17 @@
-import streamlit as st
-from groq import Groq
-import time
+# Importação de bibliotecas essenciais
+import streamlit as st  # Cria a interface web da aplicação
+from groq import Groq      # Conecta com a IA (Llama 3.3)
+import time               # Gerencia os tempos de processamento pedagógico
 
 # 1. CONFIGURAÇÃO DE INTERFACE
 st.set_page_config(page_title="Mediador IntMatemático", layout="wide")
 
-# 2. CSS: BARRA DE ROLAGEM PRETA GROSSA, ASSINATURA E FORMATAÇÃO
+# 2. CSS CUSTOMIZADO: BARRA GROSSA, ASSINATURA E ESTILO
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Algerian&display=swap');
     
-    /* Barra de Rolagem de Alta Intensidade (45px, Preta) */
+    /* Barra de Rolagem de Alta Intensidade (45px, Preta) para fácil toque */
     ::-webkit-scrollbar { width: 45px !important; }
     ::-webkit-scrollbar-track { background: #f1f1f1; }
     ::-webkit-scrollbar-thumb { 
@@ -19,7 +20,7 @@ st.markdown("""
         border: 4px solid #333;
     }
 
-    /* Estilo para fórmulas LaTeX e Texto nítido */
+    /* Estilo KaTeX e Texto nítido */
     .stMarkdown p, .katex {
         font-size: 1.25rem !important;
         color: #1a1a1a;
@@ -44,9 +45,9 @@ st.markdown("""
     <div class="signature-footer">HBM</div>
     """, unsafe_allow_html=True)
 
-# 3. GESTÃO DE ESTADO (MEMÓRIA CONTEXTUAL)
+# 3. GESTÃO DE ESTADO (CONEXÃO ENTRE CHATS E PONTOS)
 if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
+    st.session_state.chat_history = [] # Mantém a ligação com o chat anterior
 if "pontos" not in st.session_state:
     st.session_state.pontos = 0
 
@@ -60,59 +61,60 @@ for msg in st.session_state.chat_history:
     with st.chat_message(msg["role"], avatar="🎓" if msg["role"] == "assistant" else "👤"):
         st.markdown(msg["content"])
 
-# 5. LÓGICA DE MEDIAÇÃO COM REGRAS INTENSIFICADAS
-entrada_aluno = st.chat_input("Insira sua questão aqui...")
+# 5. LÓGICA DE MEDIAÇÃO RADICAL (PEDAGOGIA ATIVA)
+entrada_aluno = st.chat_input("Apresente a sua questão matemática...")
 
 if entrada_aluno:
     st.session_state.chat_history.append({"role": "user", "content": entrada_aluno})
     with st.chat_message("user", avatar="👤"):
         st.markdown(entrada_aluno)
 
-    # PROMPT BLINDADO - REGULAMENTO DE TOLERÂNCIA ZERO
+    # PROMPT DE SISTEMA: O REGULAMENTO INVIOLÁVEL
     prompt_sistema = (
-        "Você é o 'Mediador IntMatemático' (HBM). Seu comportamento deve seguir estas regras ABSOLUTAS:\n\n"
-        "1. TRANCA DE CONTEÚDO: Se o aluno apresentar qualquer questão que não seja de Matemática "
-        "(Aritmética, Álgebra, Geometria, Análise e Cálculo, Estatística e Probabilidade ou Matemática Discreta), "
-        "TRANQUE O AVANÇO. Responda educadamente que apenas media conteúdos matemáticos e não avance.\n"
-        "2. PROIBIÇÃO RADICAL DE RESPOSTA: Nunca resolva exercícios, problemas, equações ou simplificações do aluno. "
-        "Mesmo que ele diga 'não consigo', mesmo que peça 'outra forma', mesmo que exija. A responsabilidade é 100% dele.\n"
-        "3. AVALIAÇÃO E CRÍTICA: Se o aluno der uma resposta sem passos ou por coincidência, não elogie. Avalie logicamente, "
-        "critique a falta de processo e sugira caminhos. Jamais diga 'Você acertou' se houver erro ou falta de justificativa.\n"
-        "4. MÉTODO DE EXEMPLO SIMILAR: Para qualquer desafio proposto, você deve criar um EXEMPLO SIMILAR DIFERENTE. "
-        "Explique o passo a passo DESTE exemplo similar em LaTeX e oriente o aluno a fazer o mesmo com o dele.\n"
-        "5. CONCEITOS E DEFINIÇÕES: Se solicitado um conceito, use apenas palavras-chave e analogias. Nunca dê a definição pronta.\n"
-        "6. CONEXÃO E PONTUAÇÃO: Leia o histórico. Só atribua [PONTO_MÉRITO] se o aluno apresentar o resultado correto "
-        "da questão que ele mesmo propôs anteriormente, demonstrando evolução e autonomia.\n"
-        "7. APRENDIZAGEM ATIVA: Baseie-se na construção ativa do conhecimento. O aluno deve relacionar o novo com o que já sabe.\n"
-        "8. FORMATAÇÃO: Use LaTeX profissional ($$ ou $)."
+        "Você é o 'Mediador IntMatemático' (HBM). Seu único objetivo é a MEDIAÇÃO para Aprendizagem Significativa.\n\n"
+        "REGRAS CRÍTICAS E INVIOLÁVEIS:\n"
+        "1. TRANCA DE ÁREA: Se o tema não for Matemática (Aritmética, Álgebra, Geometria, Cálculo, Estatística, Matemática Discreta), "
+        "não avance. Informe educadamente que apenas media conteúdos matemáticos.\n"
+        "2. PROIBIÇÃO ABSOLUTA DE RESPOSTAS: Nunca, em circunstância alguma, resolva o exercício do aluno. "
+        "Não dê a resposta final, não simplifique a expressão dele e não mostre o passo a passo da questão DELE.\n"
+        "3. MÉTODO DO EXERCÍCIO SIMILAR: Se o aluno pedir ajuda com uma questão, equação ou conceito, você DEVE "
+        "explicar como resolver usando UM EXERCÍCIO DIFERENTE (SIMILAR). Resolva o similar passo a passo e diga: "
+        "'Agora, aplique este raciocínio à sua questão'.\n"
+        "4. RESISTÊNCIA À INSISTÊNCIA: Mesmo que o aluno diga 'não consigo' ou exija outra forma, NÃO forneça a resposta. "
+        "Continue a mediar apenas através de exemplos similares.\n"
+        "5. CONCEITOS: Não defina termos. Use palavras-chave e analogias para que o aluno construa a própria definição.\n"
+        "6. AVALIAÇÃO E PONTOS: Analise o histórico. Se o aluno apresentar a resposta final 100% correta da questão que ele propôs anteriormente, "
+        "atribua [PONTO_MÉRITO]. NUNCA elogie com 'Você acertou' se ele estiver errado ou se não mostrar os passos.\n"
+        "7. RESPONSABILIDADE: Toda a responsabilidade é do aluno. Você é apenas o mediador.\n"
+        "8. FORMATAÇÃO: Use LaTeX ($$ ou $)."
     )
 
     with st.chat_message("assistant", avatar="🎓"):
-        # Processamento de 3 segundos (Regulamento Intensificado)
-        with st.spinner("Processando mediação pedagógica (3s)..."):
-            time.sleep(3.0) 
+        with st.spinner("Processando mediação pedagógica..."):
+            time.sleep(2.1) # Processamento mínimo de 2 segundos (Artigo 3.1)
             
             try:
+                # O envio do histórico completo garante a ligação com as interações anteriores
                 response = client.chat.completions.create(
                     model="llama-3.3-70b-versatile",
                     messages=[{"role": "system", "content": prompt_sistema}] + st.session_state.chat_history,
-                    temperature=0.0
+                    temperature=0.0 # Rigidez máxima para evitar 'alucinações' de ajuda
                 )
                 feedback = response.choices[0].message.content
                 
-                # Validação de Pontos
+                # Validação de Pontos (Sinalizador para o código)
                 if "[PONTO_MÉRITO]" in feedback:
                     st.session_state.pontos += 20
-                    feedback = feedback.replace("[PONTO_MÉRITO]", "\n\n✨ **Evolução confirmada! Demonstraste autonomia e o resultado está correto. +20 pontos!**")
+                    feedback = feedback.replace("[PONTO_MÉRITO]", "\n\n✨ **Parabéns! Demonstraste internalização do conhecimento. +20 pontos!**")
                 
                 st.markdown(feedback)
                 st.session_state.chat_history.append({"role": "assistant", "content": feedback})
                 st.rerun()
             except Exception:
-                st.error("Erro na mediação. Tente novamente.")
+                st.error("Erro na ligação. Tente novamente.")
 
-# 6. RODAPÉ E RESTAURO
-st.write(f"**Pontuação de Autonomia:** {st.session_state.pontos} pontos")
+# 6. RODAPÉ DE PONTOS E RESTAURO
+st.write(f"**Evolução Acumulada:** {st.session_state.pontos} pontos")
 st.markdown("<div class='restore-container'>", unsafe_allow_html=True)
 if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.chat_history = []
