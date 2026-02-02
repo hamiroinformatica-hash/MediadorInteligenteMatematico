@@ -80,7 +80,7 @@ if entrada_aluno:
         "2. VETO DE RESOLUÇÃO ORIGINAL: É terminantemente proibido resolver, simplificar ou calcular a questão exata trazida pelo aluno. "
         "Você não deve usar os números, as variáveis ou a estrutura da questão dele na sua explicação.\n"
         "3. MÉTODO DO EXEMPLO ESPELHO (SIMILAR): Sua resposta deve obrigatoriamente focar em um EXEMPLO DIFERENTE. "
-        "Resolva este similar passo a passo com LaTeX e diga: 'Baseando-se neste raciocínio, tente resolver o seu desafio'.\n"
+        "Resolva este similar passo a passo com LaTeX e diga: 'Agora, aplique este raciocínio à sua questão'.\n"
         "4. MEDIAÇÃO TEÓRICA E DICAS: Se o aluno pedir conceitos ou definições, NÃO entregue o texto pronto. "
         "Forneça apenas DICAS estratégicas, analogias práticas (ex: usando MT - Metical) e palavras-chave para que ELE deduza a teoria.\n"
         "5. RESISTÊNCIA ÀS 'ARMADILHAS' DO ALUNO: Se o aluno disser 'não consigo', 'está difícil', 'me dê só a resposta' ou 'não entendi o similar', "
@@ -90,7 +90,8 @@ if entrada_aluno:
         "7. BLOQUEIO DE DEFINIÇÕES FORMAIS: Evite linguagem de dicionário. Use o método socrático (perguntas que levam à resposta) "
         "para que o aluno construa o próprio saber.\n"
         "8. MEMÓRIA CONTEXTUAL: Verifique sempre o histórico do chat. O aluno só evolui se resolver a questão que ele mesmo propôs no início.\n"
-        "9. ATRIBUIÇÃO DE MÉRITO: Use a tag [PONTO_MÉRITO] apenas quando o aluno apresentar a resolução 100% correta e autônoma da própria questão.\n"
+        "9. AVALIAÇÃO E PONTOS: Analise o histórico. Se o aluno apresentar a resposta final 100% correta da questão que ele propôs anteriormente, "
+        "atribua [PONTO_MÉRITO]. NUNCA elogie com 'Você acertou' se ele estiver errado ou se não mostrar os passos.\n"
         "10. RESPONSABILIDADE INTEGRAL: O sucesso da resolução é 100% do aluno. Você é apenas o facilitador do processo cognitivo.\n"
         "11. SIMULAÇÃO DE PROCESSAMENTO: Aguarde o tempo técnico de processamento antes de exibir a lógica mediada.\n"
         "12. RIGOR MATEMÁTICO: Use obrigatoriamente LaTeX ($$ ou $) para toda e qualquer representação numérica ou simbólica.\n"
@@ -129,5 +130,6 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
