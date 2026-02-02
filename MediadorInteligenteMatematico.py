@@ -11,23 +11,43 @@ st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Algerian&display=swap');
     
-    /* Barra de Rolagem de Alta Intensidade (45px, Preta) para fácil toque */
-    ::-webkit-scrollbar { width: 45px !important; }
-    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    /* Justificação de texto e legibilidade em dispositivos móveis */
+    .stMarkdown p, .katex-display, .stMarkdown div {
+        text-align: justify;
+        text-justify: inter-word;
+        line-height: 1.6; /* Espaçamento entre linhas para não cansar a vista */
+        word-wrap: break-word; /* Evita que fórmulas longas saiam do ecrã */
+    }
+
+    /* Ajuste para ecrãs de telemóvel (Mobile First) */
+    @media (max-width: 640px) {
+        .stMarkdown p, .katex {
+            font-size: 1.1rem !important; /* Ajusta o tamanho da letra em ecrãs pequenos */
+        }
+        .main .block-container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    }
+
+    /* Barra de Rolagem de Alta Intensidade (45px, Preta) */
+    ::-webkit-scrollbar { 
+        width: 45px !important; 
+    }
+    ::-webkit-scrollbar-track { 
+        background: #f1f1f1; 
+    }
     ::-webkit-scrollbar-thumb { 
         background: #000000; 
         border-radius: 5px; 
         border: 4px solid #333;
     }
 
-    /* Estilo KaTeX e Texto nítido */
-    .stMarkdown p, .katex {
-        font-size: 1.25rem !important;
-        color: #1a1a1a;
-    }
-
-    header {visibility: hidden;} footer {visibility: hidden;}
+    /* Ocultar elementos desnecessários */
+    header {visibility: hidden;} 
+    footer {visibility: hidden;}
     
+    /* Assinatura HBM Fixa */
     .signature-footer {
         position: fixed;
         bottom: 0; left: 0; width: 100%;
@@ -40,8 +60,14 @@ st.markdown("""
         color: #1e293b;
         border-top: 1px solid #ddd;
     }
-    .restore-container { display: flex; justify-content: center; padding-bottom: 110px; }
+
+    .restore-container { 
+        display: flex; 
+        justify-content: center; 
+        padding-bottom: 120px; 
+    }
     </style>
+    
     <div class="signature-footer">HBM</div>
     """, unsafe_allow_html=True)
 
@@ -130,6 +156,7 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
