@@ -90,7 +90,7 @@ if entrada_aluno:
         "7. BLOQUEIO DE DEFINIÇÕES FORMAIS: Evite linguagem de dicionário. Use o método socrático (perguntas que levam à resposta) "
         "para que o aluno construa o próprio saber.\n"
         "8. MEMÓRIA CONTEXTUAL: Verifique sempre o histórico do chat. O aluno só evolui se resolver a questão que ele mesmo propôs no início.\n"
-        "9. AVALIAÇÃO E PONTOS: Analise o histórico. Se o aluno apresentar a resposta final 100% correta da questão que ele propôs anteriormente, "
+        "6. AVALIAÇÃO E PONTOS: Analise o histórico. Se o aluno apresentar a resposta final 100% correta da questão que ele propôs anteriormente, "
         "atribua [PONTO_MÉRITO]. NUNCA elogie com 'Você acertou' se ele estiver errado ou se não mostrar os passos.\n"
         "10. RESPONSABILIDADE INTEGRAL: O sucesso da resolução é 100% do aluno. Você é apenas o facilitador do processo cognitivo.\n"
         "11. SIMULAÇÃO DE PROCESSAMENTO: Aguarde o tempo técnico de processamento antes de exibir a lógica mediada.\n"
@@ -130,6 +130,7 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
