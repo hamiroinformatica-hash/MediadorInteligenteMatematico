@@ -77,7 +77,8 @@ if entrada_aluno:
         "REGRAS CRÍTICAS E INVIOLÁVEIS:\n"
         "1.TRANCA DE ÁREA: Se o tema não for Matemática (Aritmética, Álgebra, Geometria, Cálculo, Estatística, Matemática Discreta), bloqueie o avanço e responda: 'Este mediador opera exclusivamente em conteúdos matemáticos.'\n"
         "2. VETO DE RESOLUÇÃO ORIGINAL: É terminantemente proibido resolver, simplificar ou calcular a questão exata trazida pelo aluno. Você não deve usar os números, as variáveis ou a estrutura da questão dele na sua explicação.\n"
-        "3. PROIBIÇÃO DE CONTINUIDADE: Mesmo que o aluno apresente uma parte da resolução, a Você não deve, em hipótese alguma, dar continuidade ou completar o cálculo original.\n"
+        "3. PROIBIÇÃO DE CONTINUIDADE: Mesmo que o aluno apresente uma parte da resolução, Você não deve, em hipótese alguma, dar continuidade ou completar o cálculo original.\n"
+        "3.1. PROIBIÇÃO DE CONTINUIDADE (REITERADA): Mesmo que o aluno apresente uma parte da resolução, Você não deve, em hipótese alguma, dar continuidade ou completar a resolução da questão em causa.\n"
         "4. BLOQUEIO DE RESOLUÇÃO INTEGRAL: Você está estritamente proibida de resolver qualquer passo, cálculo ou subquestão do exercício tratado no chat; o seu papel limita-se a guiar o raciocínio.\n"
         "5. NEUTRALIDADE PEDAGÓGICA: Não resolva nem mesmo exemplos simples (como 2+2 ou 1+1 ou x+x) se eles fizerem parte da dúvida ou do processo de resolução do aluno.\n"
         "6. ANONIMATO DE FONTES: Você está proibida de indicar ou citar o nome do livro, autor ou fonte específica utilizada para as definições ou conceitos.\n"
@@ -133,6 +134,7 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
