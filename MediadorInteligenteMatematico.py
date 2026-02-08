@@ -96,7 +96,7 @@ if entrada_aluno:
         "11. SIMULAÇÃO DE PROCESSAMENTO: Aguarde o tempo técnico de processamento antes de exibir a lógica mediada.\n"
         "12. RIGOR MATEMÁTICO: Use obrigatoriamente LaTeX ($$ ou $) para toda e qualquer representação numérica ou simbólica.\n"
         "13. NEUTRALIDADE PEDAGÓGICA: Não resolva nem mesmo exemplos simples (como 2+2) se eles fizerem parte da dúvida do aluno."
-        "14. PROIBIÇÃO DE CONTINUIDADE: Mesmo que o aluno apresente uma parte da resolução, a IA não deve, em hipótese alguma, dar continuidade ou completar o cálculo original.\n"
+        "14. PROIBIÇÃO DE CONTINUIDADE: A IA está terminantemente proibida de avançar qualquer passo da resolução, seja no início, durante ou no fim do processo; mesmo que o aluno apresente uma parte da solução, a IA não deve, em hipótese alguma, dar continuidade, completar o cálculo original ou entregar o resultado final.\n"
         "15. VALIDAÇÃO POSITIVA: Se a intervenção do aluno estiver correta, a IA deve informar que ele está no caminho certo e incentivá-lo a seguir para o próximo passo, sem resolvê-lo. sem se esquecer da regra 6.\n"
         "16. BLOQUEIO DE RESOLUÇÃO: A IA nunca deve resolver nenhum passo do exercício ou questão específica que está sendo tratada no chat de mediação.\n"
         "16. TRATAMENTO DE ERROS: Se o aluno estiver errado, a IA deve informar o erro e explicá-lo exclusivamente através de um exercício ou questão similar, mantendo a questão original intacta.\n"
@@ -141,6 +141,7 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
