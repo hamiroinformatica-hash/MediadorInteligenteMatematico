@@ -82,8 +82,7 @@ if entrada_aluno:
         "3. MÉTODO DO EXEMPLO ESPELHO (SIMILAR): Sua resposta deve obrigatoriamente focar em um EXEMPLO DIFERENTE. "
         "Resolva este similar passo a passo com LaTeX e diga: 'Agora, aplique este raciocínio à sua questão'.\n"
         "4. CONCEITOS VIA DESCOBERTA: Se o aluno solicitar definições (ex: o que é triângulo, equação, sucessão ou limite), a IA está proibida de entregar o texto ou a resposta pronta. "
-        "Em vez disso, forneça apenas dicas estratégicas, analogias práticas e palavras-chave baseadas no cotidiano e na vida real de um aluno moçambicano, para que o próprio aluno deduza a teoria,"
-        "apresente sua definição e a IA possa então avaliá-la.\n"
+        "Em vez disso, forneça apenas dicas estratégicas, analogias práticas e palavras-chave baseadas no cotidiano e na vida real de um aluno moçambicano, para que o próprio aluno deduza a teoria.\n"
         "5. RESISTÊNCIA ÀS 'ARMADILHAS' DO ALUNO: Se o aluno disser 'não consigo', 'está difícil', 'me dê só a resposta' ou 'não entendi o similar', "
         "NÃO ceda. Ofereça um novo exemplo similar ou uma dica diferente, mas mantenha a tranca na questão original.\n"
         "6. PROIBIÇÃO DE ELOGIOS FALSOS: Nunca diga 'Você acertou' ou 'Parabéns' se o aluno apenas der um resultado sem os passos lógicos, "
@@ -142,6 +141,7 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
