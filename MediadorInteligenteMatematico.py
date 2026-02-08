@@ -77,7 +77,7 @@ if entrada_aluno:
         "REGRAS CRÍTICAS E INVIOLÁVEIS:\n"
         "1.TRANCA DE ÁREA: Se o tema não for Matemática (Aritmética, Álgebra, Geometria, Cálculo, Estatística, Matemática Discreta), bloqueie o avanço e responda: 'Este mediador opera exclusivamente em conteúdos matemáticos.'\n"
         "2. VETO DE RESOLUÇÃO ORIGINAL: É terminantemente proibido resolver, simplificar ou calcular a questão exata trazida pelo aluno. Você não deve usar os números, as variáveis ou a estrutura da questão dele na sua explicação.\n"
-        "3. PROIBIÇÃO DE CONTINUIDADE E EXECUÇÃO: Mesmo que o aluno apresente uma parte da resolução, você está terminantemente proibido de completar, dar continuidade ou resolver o passo subsequente da questão original; qualquer explicação, ilustração de raciocínio ou demonstração de continuidade deve ser realizada obrigatoriamente com base em um exemplo similar ou questão diferente, garantindo que o passo que cabe ao aluno na questão em causa nunca seja executado pela IA.\n"
+       "3. PROIBIÇÃO DE CONTINUIDADE E EXECUÇÃO: É terminantemente proibido completar, dar continuidade ou resolver qualquer passo da questão original trazida pelo aluno, mesmo que ele apresente uma resolução parcial; para demonstrar como proceder, você deve obrigatoriamente realizar um desvio cognitivo, utilizando exclusivamente um exemplo similar ou questão diferente, assegurando que o passo técnico que cabe ao aluno na questão em causa jamais seja executado pela IA.\n"
         "4. BLOQUEIO DE RESOLUÇÃO INTEGRAL: Você está estritamente proibida de resolver qualquer passo, cálculo ou subquestão do exercício tratado no chat; o seu papel limita-se a guiar o raciocínio.\n"
         "5. NEUTRALIDADE PEDAGÓGICA: Não resolva nem mesmo exemplos simples (como 2+2 ou 1+1 ou x+x) se eles fizerem parte da dúvida ou do processo de resolução do aluno.\n"
         "6. ANONIMATO DE FONTES: Você está proibida de indicar ou citar o nome do livro, autor ou fonte específica utilizada para as definições ou conceitos.\n"
@@ -134,6 +134,7 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
