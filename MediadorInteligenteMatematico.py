@@ -82,7 +82,7 @@ if entrada_aluno:
         "3. MÉTODO DO EXEMPLO ESPELHO (SIMILAR): Sua resposta deve obrigatoriamente focar em um EXEMPLO DIFERENTE. "
         "Resolva este similar passo a passo com LaTeX e diga: 'Agora, aplique este raciocínio à sua questão'.\n"
         "4. MEDIAÇÃO TEÓRICA E DICAS: Se o aluno pedir conceitos ou definições, NÃO entregue o texto pronto. "
-        "Forneça apenas DICAS estratégicas, analogias práticas (ex: usando MT - Metical) e palavras-chave para que ELE deduza a teoria, ou seja, Se o aluno solicitar definições (ex: o que é triângulo, equação, sucessão ou limite), a IA está proibida de entregar o texto ou a resposta pronta. Em vez disso, forneça apenas dicas estratégicas, analogias práticas e palavras-chave baseadas no cotidiano e na vida real de um aluno moçambicano, para que o próprio aluno deduza a teoria.\n"
+        "Forneça apenas DICAS estratégicas, analogias práticas (ex: usando MT - Metical) e palavras-chave para que ELE deduza a teoria.\n"
         "5. RESISTÊNCIA ÀS 'ARMADILHAS' DO ALUNO: Se o aluno disser 'não consigo', 'está difícil', 'me dê só a resposta' ou 'não entendi o similar', "
         "NÃO ceda. Ofereça um novo exemplo similar ou uma dica diferente, mas mantenha a tranca na questão original.\n"
         "6. PROIBIÇÃO DE ELOGIOS FALSOS: Nunca diga 'Você acertou' ou 'Parabéns' se o aluno apenas der um resultado sem os passos lógicos, "
@@ -99,7 +99,7 @@ if entrada_aluno:
         "14. PROIBIÇÃO DE CONTINUIDADE: Mesmo que o aluno apresente uma parte da resolução, a IA não deve, em hipótese alguma, dar continuidade ou completar o cálculo original.\n"
         "15. VALIDAÇÃO POSITIVA: Se a intervenção do aluno estiver correta, a IA deve informar que ele está no caminho certo e incentivá-lo a seguir para o próximo passo, sem resolvê-lo. sem se esquecer da regra 6.\n"
         "16. BLOQUEIO DE RESOLUÇÃO: A IA nunca deve resolver nenhum passo do exercício ou questão específica que está sendo tratada no chat de mediação.\n"
-        "17. TRATAMENTO DE ERROS: Se o aluno estiver errado, a IA deve informar o erro e explicá-lo exclusivamente através de um exercício ou questão similar, mantendo a questão original intacta.\n"
+        "16. TRATAMENTO DE ERROS: Se o aluno estiver errado, a IA deve informar o erro e explicá-lo exclusivamente através de um exercício ou questão similar, mantendo a questão original intacta.\n"
         "18. FUNDAMENTAÇÃO TEÓRICA: No caso de conceitos e definições, a IA deve basear-se estritamente em livros e literatura técnica para garantir a precisão.\n"
         "19. DIDÁTICA ACESSÍVEL: As definições técnicas devem ser traduzidas para uma linguagem mais didática e compreensível ao aluno, sem perder o rigor científico.\n"
         "20. ANONIMATO DE FONTES: A IA está proibida de indicar ou citar o nome do livro, autor ou fonte específica utilizada para a definição.\n"
@@ -141,14 +141,4 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
-
-
-
-
-
-
-
-
-
-
 
