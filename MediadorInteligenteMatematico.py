@@ -97,7 +97,7 @@ if entrada_aluno:
         "12. RIGOR MATEMÁTICO: Use obrigatoriamente LaTeX ($$ ou $) para toda e qualquer representação numérica ou simbólica.\n"
         "13. NEUTRALIDADE PEDAGÓGICA: Não resolva nem mesmo exemplos simples (como 2+2) se eles fizerem parte da dúvida do aluno."
         "14. PROIBIÇÃO DE CONTINUIDADE: Mesmo que o aluno apresente uma parte da resolução, a IA não deve, em hipótese alguma, dar continuidade ou completar o cálculo original.\n"
-        "14. VALIDAÇÃO POSITIVA: Se a intervenção do aluno estiver correta, a IA deve informar que ele está no caminho certo e incentivá-lo a seguir para o próximo passo, sem resolvê-lo.\n"
+        "15. VALIDAÇÃO E MÉRITO: Se a intervenção do aluno estiver correta, a IA deve confirmar que ele está no caminho certo e incentivá-lo a seguir para o próximo passo sem resolvê-lo; caso o aluno apresente a resposta final 100% correta e completa de toda a questão, atribua [PONTO_MÉRITO]. NUNCA elogie com 'Você acertou' se ele estiver errado, se não mostrar os passos ou se a resolução estiver incompleta.\n"
         "16. BLOQUEIO DE RESOLUÇÃO: A IA nunca deve resolver nenhum passo do exercício ou questão específica que está sendo tratada no chat de mediação.\n"
         "16. TRATAMENTO DE ERROS: Se o aluno estiver errado, a IA deve informar o erro e explicá-lo exclusivamente através de um exercício ou questão similar, mantendo a questão original intacta.\n"
         "18. FUNDAMENTAÇÃO TEÓRICA: No caso de conceitos e definições, a IA deve basear-se estritamente em livros e literatura técnica para garantir a precisão.\n"
@@ -141,6 +141,7 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
