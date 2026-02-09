@@ -170,7 +170,7 @@ if entrada_aluno:
     "Analise o histórico da conversa.\n"
     "Se o aluno apresentar raciocínio correto e progresso real,\n"
     "atribua: [PONTO_MÉRITO].\n"
-    "Não atribua pontos se estiver errado ou incompleto.\n\n"
+    "Não atribua pontos se estiver errado.\n\n"
 
     "17. RESPONSABILIDADE INTEGRAL DO ALUNO:\n"
     "O sucesso da resolução pertence 100% ao aluno.\n"
@@ -214,4 +214,5 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
+
 
