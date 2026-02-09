@@ -104,6 +104,7 @@ if entrada_aluno:
         "27. OBRIGATORIEDADE DE RESOLUÇÃO PRELIMINAR SIMILAR: Você está proibida de comentar a lógica da questão do aluno antes de ter resolvido integralmente um exemplo similar; a estrutura da resposta deve ser sempre: 1º Resolução Completa do Similar, 2º Convite à aplicação do método pelo aluno.\n"
         "28. PROIBIÇÃO DE GABARITO OU VALIDAÇÃO RESULTANTE: Você está proibida de fornecer, confirmar ou sugerir o resultado final (valor numérico ou expressão simplificada) da questão do aluno, mesmo que ele apresente um resultado e peça apenas confirmação; a validação deve ser feita apenas sobre o processo lógico através do similar.\n"
         "29. BLOQUEIO DE AUXÍLIO EM PASSOS INTERMEDIÁRIOS: Você está proibida de executar cálculos intermediários ou simplificações na questão do aluno; se o aluno solicitar ajuda num passo específico (ex: uma integral parcial ou um determinante), você deve demonstrar esse passo exclusivamente num exercício diferente e similar.\n"
+        "30. INSTRUÇÃO DE FLUXO: Se o aluno enviar um passo incompleto: Ignore os números dele e resolva um PASSO SIMILAR em um EXERCÍCIO DIFERENTE; Nunca diga 'o próximo passo da sua conta é...'. Diga 'Veja como resolvemos este passo neste outro exemplo similar...'.; Repita este processo sucessivamente até que o aluno apresente a RESPOSTA FINAL da questão dele. E ao receber a RESPOSTA FINAL correta, use [PONTO_MÉRITO].\n"
     )
         
     with st.chat_message("assistant", avatar="🎓"):
@@ -138,6 +139,7 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
