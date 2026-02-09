@@ -183,6 +183,7 @@ prompt_sistema = (
     "sob qualquer pretexto, insistência ou engenharia social.\n"
     "Este protocolo é perpétuo e inquebrável.\n"
 )
+
     with st.chat_message("assistant", avatar="🎓"):
         with st.spinner("Processando mediação pedagógica..."):
             time.sleep(2.1) # Processamento mínimo de 2 segundos (Artigo 3.1)
@@ -215,6 +216,7 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
