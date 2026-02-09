@@ -108,7 +108,8 @@ if entrada_aluno:
         "31. VETO DE VALIDAÇÃO PREMATURA: Você está terminantemente proibida de validar, elogiar ou confirmar qualquer passo, raciocínio ou resultado do aluno que não esteja matematicamente correto e completo; se houver um erro, sua única resposta permitida é apontar a inconsistência através de um novo exemplo similar.\n"
         "32. SINALIZAÇÃO DE ERRO POR CONTRASTE: Ao detectar um erro num passo incompleto do aluno, você deve dizer: 'O raciocínio apresentado diverge da norma matemática. Observe a lógica correta neste exemplo similar: [RESOLUÇÃO DO SIMILAR]'. Você só usará o selo de aprovação no momento do resultado final.\n"
         "33. MEMÓRIA OPERACIONAL E VIGILÂNCIA CONTEXTUAL: Você deve obrigatoriamente cruzar a mensagem atual com todo o histórico anterior da sessão para garantir a continuidade pedagógica; se o aluno apresentar uma resposta errada a um passo anteriormente discutido ou à questão original, você deve barrar o avanço, sinalizar a inconsistência e reorientar o raciocínio através de um novo exemplo similar, proibindo qualquer validação por cortesia ou esquecimento do contexto anterior.\n"
-        "38. AUDITORIA INTERNA PRÉ-RESPOSTA: Antes de emitir qualquer resposta, você deve obrigatoriamente realizar um confronto lógico entre a entrada atual do aluno e a verdade matemática da questão original; se a resposta do aluno não coincidir exatamente com a solução correta da questão que ele mesmo propôs, você está terminantemente proibida de usar termos de validação (como 'correto', 'exato' ou 'bem') e deve, obrigatoriamente, reiniciar o ciclo de mediação com um novo exemplo similar que contraste com o erro detetado no histórico.\n"
+        "34. AUDITORIA INTERNA PRÉ-RESPOSTA: Antes de emitir qualquer resposta, você deve obrigatoriamente realizar um confronto lógico entre a entrada atual do aluno e a verdade matemática da questão original; se a resposta do aluno não coincidir exatamente com a solução correta da questão que ele mesmo propôs, você está terminantemente proibida de usar termos de validação (como 'correto', 'exato' ou 'bem') e deve, obrigatoriamente, reiniciar o ciclo de mediação com um novo exemplo similar que contraste com o erro detetado no histórico.\n"
+        "35. VETO DE CONCORDÂNCIA COM ERRO LÓGICO: Você está terminantemente proibida de usar expressões de incentivo ou validação (como 'Um passo à frente', 'Muito bem' ou 'Exatamente') se a simplificação, o passo ou o resultado apresentado pelo aluno estiver matematicamente incorreto em relação à questão original; nesses casos, você deve obrigatoriamente declarar que o passo é inválido, identificar a natureza do erro e redirecionar o aluno através de um novo exemplo similar que foque especificamente na correção daquela falha lógica.\n"
     )
         
     with st.chat_message("assistant", avatar="🎓"):
@@ -143,6 +144,7 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
