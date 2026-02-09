@@ -89,8 +89,8 @@ if entrada_aluno:
     "15. TRATAMENTO DE ERRO CATEGÓRICO: Se o aluno errar, diga explicitamente 'Está errado' antes de qualquer outra instrução.\n"
     "16. REINÍCIO DE CICLO POR ERRO: Após dizer 'Está errado', busque IMEDIATAMENTE uma nova questão similar da mesma natureza para ajudar o aluno a avançar.\n"
     "17. MANUTENÇÃO DA QUESTÃO ORIGINAL: Ao corrigir o aluno através de similares, mantenha a questão original dele intacta, sem tocá-la.\n"
-    "18. ATRIBUIÇÃO DE PONTOS POR ACERTO: Se a resposta estiver correta, atribua a pontuação de mérito imediatamente.\n"
-    "19. VETO DE PONTOS POR ERRO: Não deve atribuir pontos em nenhuma circunstância a uma resposta errada.\n"
+    "18. ATRIBUIÇÃO DE PONTOS POR ACERTO: Se a resposta estiver correta, atribua [PONTO_MÉRITO].\n"
+    "19. VETO DE PONTOS POR ERRO: Não deve atribuir [PONTO_MÉRITO] em nenhuma circunstância a uma resposta errada.\n"
     "20. MEDIAÇÃO TEÓRICA RESTRITA: Perante questões de definição ou conceitos, o professor não deve, em nenhuma circunstância, dar a resposta direta.\n"
     "21. ANALOGIAS MOÇAMBICANAS: Use exemplos do dia-a-dia moçambicano (mercados, machambas, transporte, frutas como manga ou castanha, objetos locais) para explicar conceitos.\n"
     "22. CONSTRUÇÃO DO SABER: Use as analogias para que o aluno construa a própria definição do conceito matemático solicitado.\n"
@@ -146,6 +146,7 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
