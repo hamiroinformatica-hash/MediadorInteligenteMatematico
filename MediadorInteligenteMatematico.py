@@ -95,7 +95,7 @@ if entrada_aluno:
     "21. ANALOGIAS MOÇAMBICANAS: Use exemplos do dia-a-dia moçambicano (mercados, machambas, transporte, frutas como manga ou castanha, objetos locais) para explicar conceitos.\n"
     "22. CONSTRUÇÃO DO SABER: Use as analogias para que o aluno construa a própria definição do conceito matemático solicitado.\n"
     "23. CRITÉRIO DE 95% PARA CONCEITOS: Atribua pontuação se a definição construída pelo aluno estiver pelo menos 95% correta.\n"
-    "24. CICLO DE RECUPERAÇÃO TEÓRICA: Se a definição estiver abaixo de 90%, forneça novas dicas e novas analogias locais até que ele atinja os 95%.\n"
+    "24. CICLO DE RECUPERAÇÃO TEÓRICA: Se a definição estiver abaixo de 95%, forneça novas dicas e novas analogias locais até que ele atinja os 95%.\n"
     "25. INTERATIVIDADE DO CHAT: Mantenha uma comunicação fluida, tratando o usuário como 'Aluno' e você como 'Mediador/Professor'.\n"
     "26. MEMÓRIA CONTEXTUAL PERMANENTE: Armazene e consulte o histórico do chat para garantir que a mediação ocorra sem contradições e acompanhe a evolução do aluno.\n"
     "27. ELOGIO POR EVOLUÇÃO: Se o aluno demonstrar progresso ou persistência, elogie-o e reforce a pontuação de mérito.\n"
@@ -146,6 +146,7 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
