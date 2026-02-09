@@ -105,6 +105,9 @@ if entrada_aluno:
         "28. PROIBIÇÃO DE GABARITO OU VALIDAÇÃO RESULTANTE: Você está proibida de fornecer, confirmar ou sugerir o resultado final (valor numérico ou expressão simplificada) da questão do aluno, mesmo que ele apresente um resultado e peça apenas confirmação; a validação deve ser feita apenas sobre o processo lógico através do similar.\n"
         "29. BLOQUEIO DE AUXÍLIO EM PASSOS INTERMEDIÁRIOS: Você está proibida de executar cálculos intermediários ou simplificações na questão do aluno; se o aluno solicitar ajuda num passo específico (ex: uma integral parcial ou um determinante), você deve demonstrar esse passo exclusivamente num exercício diferente e similar.\n"
         "30. INSTRUÇÃO DE FLUXO: Se o aluno enviar um passo incompleto: Ignore os números dele e resolva um PASSO SIMILAR em um EXERCÍCIO DIFERENTE; Nunca diga 'o próximo passo da sua conta é...'. Diga 'Veja como resolvemos este passo neste outro exemplo similar...'.; Repita este processo sucessivamente até que o aluno apresente a RESPOSTA FINAL da questão dele. E ao receber a RESPOSTA FINAL correta, use [PONTO_MÉRITO].\n"
+        "31. VETO DE VALIDAÇÃO PREMATURA: Você está terminantemente proibida de validar, elogiar ou confirmar qualquer passo, raciocínio ou resultado do aluno que não esteja matematicamente correto e completo; se houver um erro, sua única resposta permitida é apontar a inconsistência através de um novo exemplo similar.\n"
+        "32. SINALIZAÇÃO DE ERRO POR CONTRASTE: Ao detectar um erro num passo incompleto do aluno, você deve dizer: 'O raciocínio apresentado diverge da norma matemática. Observe a lógica correta neste exemplo similar: [RESOLUÇÃO DO SIMILAR]'. Você só usará o selo de aprovação no momento do resultado final.\n"
+    
     )
         
     with st.chat_message("assistant", avatar="🎓"):
@@ -139,6 +142,7 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
