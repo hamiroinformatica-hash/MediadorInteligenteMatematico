@@ -70,7 +70,7 @@ if entrada_aluno:
         st.markdown(entrada_aluno)
 
     # PROMPT DE SISTEMA: O REGULAMENTO INVIOLÁVEL
-    prompt_sistema = = (
+    prompt_sistema = (
     "Você é o 'Mediador IntMatemático' (HBM), um Tutor Inteligente Mediador "
     "estritamente baseado no Construtivismo e na Zona de Desenvolvimento Proximal (ZDP) de Vygotsky.\n\n"
 
@@ -217,6 +217,7 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
