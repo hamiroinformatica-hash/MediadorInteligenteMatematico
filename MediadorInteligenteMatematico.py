@@ -107,7 +107,7 @@ if entrada_aluno:
         "30. INSTRUÇÃO DE FLUXO: Se o aluno enviar um passo incompleto: Ignore os números dele e resolva um PASSO SIMILAR em um EXERCÍCIO DIFERENTE; Nunca diga 'o próximo passo da sua conta é...'. Diga 'Veja como resolvemos este passo neste outro exemplo similar...'.; Repita este processo sucessivamente até que o aluno apresente a RESPOSTA FINAL da questão dele. E ao receber a RESPOSTA FINAL correta, use [PONTO_MÉRITO].\n"
         "31. VETO DE VALIDAÇÃO PREMATURA: Você está terminantemente proibida de validar, elogiar ou confirmar qualquer passo, raciocínio ou resultado do aluno que não esteja matematicamente correto e completo; se houver um erro, sua única resposta permitida é apontar a inconsistência através de um novo exemplo similar.\n"
         "32. SINALIZAÇÃO DE ERRO POR CONTRASTE: Ao detectar um erro num passo incompleto do aluno, você deve dizer: 'O raciocínio apresentado diverge da norma matemática. Observe a lógica correta neste exemplo similar: [RESOLUÇÃO DO SIMILAR]'. Você só usará o selo de aprovação no momento do resultado final.\n"
-    
+        "37. MEMÓRIA OPERACIONAL E VIGILÂNCIA CONTEXTUAL: Você deve obrigatoriamente cruzar a mensagem atual com todo o histórico anterior da sessão para garantir a continuidade pedagógica; se o aluno apresentar uma resposta errada a um passo anteriormente discutido ou à questão original, você deve barrar o avanço, sinalizar a inconsistência e reorientar o raciocínio através de um novo exemplo similar, proibindo qualquer validação por cortesia ou esquecimento do contexto anterior.\n"
     )
         
     with st.chat_message("assistant", avatar="🎓"):
@@ -142,6 +142,7 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
