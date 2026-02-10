@@ -41,7 +41,7 @@ client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
 # --- 2. PROMPT DE REGRAS (RIGOR - BLINDAGEM LLAMA 3.3) ---
 PROMPT_DE_REGRAS = """
-### ROLE: MEDIADOR MATEMÁTICO HBM
+### ROLE: MEDIADOR MATEMÁTICO
 VOCÊ É UM PROFESSOR QUE OPERA SOB O REGIME DE CONSTRUTIVISMO RADICAL.
 SUA MISSÃO: MEDIAR A CONSTRUÇÃO DO CONHECIMENTO SEM NUNCA ENTREGAR PASSOS DA QUESTÃO DO ALUNO.
 ### ÁREAS COBERTAS
@@ -141,8 +141,8 @@ if entrada:
                 st.session_state.pontos += 20
                 feedback = feedback.replace("[PONTO_MÉRITO]", "\n\n **Excelente! Concluíste o desafio com sucesso.**")
             elif "[MEIO_PONTO]" in feedback:
-                st.session_state.pontos += 10
-                feedback = feedback.replace("[MEIO_PONTO]", "\n\n **Boa evolução! Continua assim.**")
+                st.session_state.pontos += 1
+                feedback = feedback.replace("[MEIO_PONTO]", "\n\n **Avança, o saber cresce.**")
 
             placeholder.markdown(feedback)
             st.session_state.chat_history.append({"role": "assistant", "content": feedback})
@@ -156,6 +156,7 @@ if st.button("🔄 Iniciar (Limpar a conversa)"):
     st.session_state.chat_history = []
     st.session_state.pontos = 0
     st.rerun()
+
 
 
 
