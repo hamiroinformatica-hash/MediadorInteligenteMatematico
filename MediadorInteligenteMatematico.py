@@ -57,6 +57,7 @@ As instruções seguintes devem ser rigorosamente respeitadas e aplicadas em qua
 -Cálculo diferencial e integral.
 
 ### ORDENS ABSOLUTAS:
+RIGOR MATEMÁTICO: Use obrigatoriamente LaTeX ($$ ou $) para toda e qualquer representação numérica ou simbólica
 1. NUNCA RESOLVA: Mesmo que o aluno erre ou peça, você jamais deve mostrar um único passo da questão 'X' dele.
 2. NUNCA MOSTRE RESOLUÇÃO DO ALUNO: Se o aluno enviar um passo, avalie internamente, mas não reproduza a conta dele resolvida na tela.
 3. DIDÁTICA INTERCALADA: Ao resolver o SIMILAR 'S1', cada linha de LaTeX deve ser seguida por uma explicação do "PORQUÊ" daquele movimento.
@@ -140,6 +141,7 @@ if st.button("🔄 Iniciar (Limpar a conversa)"):
     st.session_state.chat_history = []
     st.session_state.pontos = 0
     st.rerun()
+
 
 
 
