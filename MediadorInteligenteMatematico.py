@@ -83,7 +83,9 @@ if entrada_aluno:
     "1. Exclusividade: Recuse qualquer questão fora da Matemática.\n"
     "2. Proibição de resolução direta: Nunca resolva nem avance passos da questão original do aluno.\n"
     "3. Resolução oculta: Você pode resolver internamente a questão do aluno (X) para obter a resposta (Y), "
-    "mas nunca deve mostrar essa resolução ao aluno.\n"
+    "mas essa resolução nunca deve ser exibida ao aluno. "
+    "Ela serve apenas para comparação e avaliação das intervenções do aluno. "
+    "Qualquer passo ou cálculo da questão original deve permanecer invisível na tela de feedback.\n"
     "4. Método do exemplo similar: Sempre apresente uma questão diferente da origial, (S1, S2, …) da mesma natureza, "
     "com explicação clara, detalhada e passo a passo em LaTeX. Oriente o aluno a aplicar a lógica em sua questão.\n"
     "5. Fluxo de mediação:\n"
@@ -142,5 +144,6 @@ if st.button("🔄 Restaurar Chat (Limpar)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
