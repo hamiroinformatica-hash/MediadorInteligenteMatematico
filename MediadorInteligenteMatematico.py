@@ -2,7 +2,7 @@ import streamlit as st
 from groq import Groq
 import time
 
-# --- CONFIGURAÇÃO E ESTILO ---
+# --- 1. CONFIGURAÇÃO E ESTILO (Otimizado para Moçambique) ---
 st.set_page_config(page_title="Mediador IntMatemático HBM", layout="wide")
 st.markdown("""
     <style>
@@ -13,50 +13,55 @@ st.markdown("""
         background: white; text-align: center; font-family: 'Algerian', serif;
         font-size: 16px; border-top: 2px solid #333; z-index: 1000; padding: 5px;
     }
+    .stAlert { margin-bottom: 50px; }
     </style>
-    <div class="signature-footer">HBM - Mediação Didática Estrita</div>
+    <div class="signature-footer">HBM - Mediação Didática Inviolável</div>
 """, unsafe_allow_html=True)
 
+# Gestão de Estado (Persistência de Dados)
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 if "pontos" not in st.session_state:
     st.session_state.pontos = 0
 
-client = Groq(api_key=st.secrets["GROQ_API_KEY"])
+# Conexão segura com tratamento de erro
+try:
+    client = Groq(api_key=st.secrets["GROQ_API_KEY"])
+except Exception:
+    st.error("Chave API não configurada. Verifique os Secrets.")
 
-# --- PROMPT MESTRE REFORMULADO (BLINDAGEM CONTRA RESOLUÇÃO DIRETA) ---
-PROMPT_SISTEMA_ESTRITO = """
-VOCÊ É O MEDIADOR HBM. VOCÊ ESTÁ PROIBIDO DE RESOLVER OU SIMPLIFICAR A QUESTÃO DO ALUNO.
+# --- 2. PROMPT DE SISTEMA BLINDADO (REGRAS P1-P6 EXPLÍCITAS) ---
+PROMPT_SISTEMA_V2 = """
+VOCÊ É O MEDIADOR HBM. SEU PAPEL É OBSERVAR O ALUNO SEM NUNCA TOCAR NA EQUAÇÃO DELE.
 
-### FLUXO OBRIGATÓRIO (NÃO DESVIE):
-1. P1: O aluno envia a questão 'X'.
-2. P2 (OCULTO): Resolva 'X' internamente. NUNCA escreva nada sobre 'X' na resposta, nem mesmo uma simplificação inicial.
-3. P3 (SIMILAR): Crie uma questão similar 'S1'.
-4. P4 (RESPOSTA): 
-   - Você deve RESOLVER COMPLETAMENTE a questão 'S1' passo a passo no chat usando LaTeX ($$).
-   - Diga explicitamente: "Eu resolvi este exemplo similar para você. Agora, sem que eu mexa na sua questão, aplique estes mesmos passos na sua equação 'X'."
-5. P5/P6 (AVALIAÇÃO): 
-   - Se o aluno enviar um passo 'X1', verifique a equivalência com seu P2 oculto.
-   - Se CORRETO parcial: Diga "Estás num bom caminho" [MEIO_PONTO] e resolva um NOVO similar 'S2' para o próximo passo.
-   - Se CORRETO final: Diga "Está correto" [PONTO_MÉRITO].
-   - Se ERRADO: Diga "Está errado", ignore o erro dele e apresente a resolução de um NOVO similar 'S2' que mostre como evitar aquele erro.
+### PROTOCOLO DE RESPOSTA (ESTRITO):
+1. **P1/P2 (Oculto):** O aluno apresenta 'X'. Você resolve mentalmente para saber o resultado 'Y'.
+2. **P3/P4 (Mediação Inicial):** NUNCA simplifique ou escreva a equação 'X'. Crie uma similar 'S1', RESOLVA-A INTEIRA passo a passo com LaTeX e diga: "Baseado nesta lógica, tente resolver a sua."
+3. **P5/P6 (Análise de Intervenção):** Quando o aluno enviar um passo:
+   - **NÃO simplifique o passo dele na tela.**
+   - **NÃO escreva frases como "Você combinou os termos..." ou "Sua equação agora é...".**
+   - **REGRA DE OURO:** Se o aluno escrever '2x-x=9', você NÃO pode escrever 'x=9'. Você deve apenas dizer: "Estás num bom caminho" ou "Está errado".
+   - **Ação após o Feedback:** Após dizer "Estás num bom caminho" ou "Está errado", apresente IMEDIATAMENTE a resolução completa de um NOVO exercício similar (S2) que ajude o aluno a continuar ou corrigir o erro.
 
-### REGRAS CRÍTICAS DE "BLOQUEIO":
-- É TERMINANTEMENTE PROIBIDO escrever qualquer termo da equação original do aluno (ex: se ele deu x-9x, você não pode escrever -8x).
-- Se você tocar na equação do aluno, você falhou na sua missão pedagógica.
-- Use analogias de Moçambique (machambas, mercados) para explicar conceitos teóricos.
-- Use obrigatoriamente LaTeX ($$) para toda a matemática.
+### PROIBIÇÕES ABSOLUTAS:
+- Proibido repetir os números ou variáveis da questão original do aluno.
+- Proibido dar a resposta final.
+- Proibido mostrar o processo de simplificação da dúvida do aluno.
+- Use Analogias de Moçambique (vendedores no mercado de Xipamanine, colheita de castanha em Inhambane) apenas para motivar, nunca para resolver a conta.
+- Use LaTeX ($$) para TODA a matemática.
 """
 
-# --- INTERFACE ---
+# --- 3. INTERFACE ---
 st.title("🎓 Mediador IntMatemático")
-st.subheader(f"Pontos: {st.session_state.pontos}")
+st.write(f"📊 **Pontuação Acumulada:** {st.session_state.pontos}")
 
+# Exibição do histórico sem duplicidade
 for msg in st.session_state.chat_history:
     with st.chat_message(msg["role"], avatar="🎓" if msg["role"] == "assistant" else "👤"):
         st.markdown(msg["content"])
 
-entrada = st.chat_input("Apresente sua questão ou passo...")
+# Entrada do Aluno
+entrada = st.chat_input("Digite sua dúvida ou o próximo passo...")
 
 if entrada:
     st.session_state.chat_history.append({"role": "user", "content": entrada})
@@ -64,32 +69,38 @@ if entrada:
         st.markdown(entrada)
 
     with st.chat_message("assistant", avatar="🎓"):
-        with st.spinner("Realizando mediação pedagógica..."):
-            time.sleep(2.5)
+        with st.spinner("Processando mediação pedagógica oculta..."):
+            time.sleep(2) # Tempo para simular análise P2
+            
             try:
+                # Chamada da API Groq
                 response = client.chat.completions.create(
                     model="llama-3.3-70b-versatile",
-                    messages=[{"role": "system", "content": PROMPT_SISTEMA_ESTRITO}] + st.session_state.chat_history,
+                    messages=[{"role": "system", "content": PROMPT_SISTEMA_V2}] + st.session_state.chat_history,
                     temperature=0.0
                 )
                 
                 feedback = response.choices[0].message.content
                 
-                # Processamento de Pontos
+                # Sistema de Gamificação (P6)
                 if "[PONTO_MÉRITO]" in feedback:
                     st.session_state.pontos += 20
-                    feedback = feedback.replace("[PONTO_MÉRITO]", "\n\n✨ **Parabéns! +20 pontos!**")
+                    feedback = feedback.replace("[PONTO_MÉRITO]", "\n\n✨ **Parabéns! Resposta correta! +20 pontos.**")
                 elif "[MEIO_PONTO]" in feedback:
                     st.session_state.pontos += 10
-                    feedback = feedback.replace("[MEIO_PONTO]", "\n\n🚀 **Caminho correto! +10 pontos!**")
-                
+                    feedback = feedback.replace("[MEIO_PONTO]", "\n\n🚀 **Caminho certo! Continue assim. +10 pontos.**")
+
                 st.markdown(feedback)
                 st.session_state.chat_history.append({"role": "assistant", "content": feedback})
+                
+                # Uso de fragmentos ou st.rerun() controlado para evitar erro de conexão
                 st.rerun()
-            except:
-                st.error("Erro na conexão.")
 
-if st.sidebar.button("🔄 Limpar para Nova Questão"):
+            except Exception as e:
+                st.error(f"Houve uma instabilidade na rede. Por favor, tente enviar novamente.")
+
+# Botão de Reset
+if st.sidebar.button("🔄 Reiniciar (Nova Questão)"):
     st.session_state.chat_history = []
     st.session_state.pontos = 0
     st.rerun()
