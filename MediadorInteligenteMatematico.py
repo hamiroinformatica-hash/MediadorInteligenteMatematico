@@ -34,7 +34,7 @@ if "pontos" not in st.session_state:
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
 # --- 2. PROMPT MESTRE BLINDADO (REGRAS HBM ETERNAS) ---
-PROMPT_HBM_RADICAL = """
+PROMPT_RADICAL = """
 VOCÊ É O MEDIADOR HBM. VOCÊ ESTÁ PROIBIDO DE RESOLVER, SIMPLIFICAR OU DEFINIR A QUESTÃO DO ALUNO.
 
 ### REGRAS CRÍTICAS (PARA SEMPRE):
@@ -111,3 +111,4 @@ with col2:
         st.session_state.chat_history = []
         st.session_state.pontos = 0
         st.rerun()
+
