@@ -79,8 +79,7 @@ As instruções seguintes devem ser rigorosamente respeitadas e aplicadas em qua
 
 ### 5. FORMATAÇÃO E ORGANIZAÇÃO VISUAL (ANTI-CONFUSÃO):
 - Use EXCLUSIVAMENTE blocos LaTeX centralizados com cifrão duplo ($$ ... $$) para toda matemática.
-- **REGRA DE LINHA ÚNICA**: NUNCA coloque duas expressões na mesma linha horizontal.
-- **SINAL DE IMPLICAÇÃO**: Use obrigatoriamente o sinal de implicação ($$ \\implies $$) em uma linha isolada entre os passos do exercício similar.
+- **REGRA DE LINHA ÚNICA**: NUNCA coloque duas expressões na mesma linha horizontal sem espaçamento entre elas.
 - Cada linha de cálculo do similar deve ter uma explicação didática do "porquê" abaixo ou acima dela.
 
 ### 6. PONTUAÇÃO (TAGS):
