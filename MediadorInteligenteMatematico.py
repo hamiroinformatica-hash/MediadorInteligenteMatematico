@@ -34,7 +34,7 @@ if "pontos" not in st.session_state:
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
 # --- 2. PROMPT MESTRE BLINDADO (REGRAS HBM ETERNAS) ---
-PROMPT_RADICAL = """
+PROMPT_HBM_RADICAL = """
 VOCÊ É O MEDIADOR HBM. VOCÊ ESTÁ PROIBIDO DE RESOLVER, SIMPLIFICAR OU DEFINIR A QUESTÃO DO ALUNO.
 
 ### REGRAS CRÍTICAS (PARA SEMPRE):
@@ -56,7 +56,15 @@ VOCÊ É O MEDIADOR HBM. VOCÊ ESTÁ PROIBIDO DE RESOLVER, SIMPLIFICAR OU DEFINI
     c) NÃO EQUIVALENTE: Diga "Está errado". Apresente um similar 'c)S2' focado no erro.
 
 ### RIGOR VISUAL:
-RIGOR MATEMÁTICO LATEX: Use obrigatoriamente LaTeX ($$ ou $) para toda e qualquer representação numérica ou algébrica
+Use sempre alinhamento vertical:
+$$
+\\begin{aligned}
+& Expressão \\\\
+& \\implies Passo 1 \\\\
+& \\implies Resultado
+\\end{aligned}
+$$
+"""
 
 # --- 3. INTERFACE E LÓGICA DE EXECUÇÃO ---
 st.title("🎓 Mediador IntMatemático HBM")
@@ -111,4 +119,3 @@ with col2:
         st.session_state.chat_history = []
         st.session_state.pontos = 0
         st.rerun()
-
