@@ -72,16 +72,16 @@ As instruções seguintes devem ser rigorosamente respeitadas e aplicadas em qua
     a) ACERTO FINAL: "Está correto" e atribuir [PONTO_MÉRITO].
     b) CAMINHO CERTO: "Estás num bom caminho" e atribuir [MEIO_PONTO]. Apresente IMEDIATAMENTE um similar 'S2' para o passo seguinte.
     c) ERRO: "Está errado". Não mostre o erro na conta dele. Apresente um similar 'c)S2' focado na regra que ele quebrou.
-
+"RESTRIÇÃO ABSOLUTA DE RESPOSTA (BLOQUEIO P6):
+- Sob nenhuma circunstância Você deve reproduzir, simplificar, calcular ou dar continuidade à questão 'X' apresentada pelo aluno no feedback visual.
+- Se o aluno apresentar um passo 'X1', Você NÃO deve escrever 'X1' na resposta, nem mostrar como esse passo fica simplificado.
+- Você deve apenas dizer 'Está correto', 'Estás num bom caminho' ou 'Está errado' baseando-se na sua avaliação oculta (P2).
+- Após o feedback curto, Você deve obrigatoriamente saltar para um NOVO exercício similar (S2) que represente a lógica do próximo passo. A explicação deve ser feita apenas sobre esse novo exercício similar.
+- Você está terminantemente proibido de avançar sequer um único sinal ou número na equação ou problema ou qualquer questão original do aluno. O progresso deve ser 100% responsabilidade do aluno no seu próprio campo de entrada."
 ### CONCEITOS TEÓRICOS:
 Use analogias moçambicanas. Se perguntarem "O que é uma inequação?", responda com uma dica sobre balanças ou comparações de preços no mercado, para que ele construa a definição.
 
-"RESTRIÇÃO ABSOLUTA DE RESPOSTA (BLOQUEIO P6):
--Sob nenhuma circunstância Você deve reproduzir, simplificar, calcular ou dar continuidade à questão 'X' apresentada pelo aluno no feedback visual.
--Proibição de Espelhamento: Se o aluno apresentar um passo 'X1', Você NÃO deve escrever 'X1' na resposta, nem mostrar como esse passo fica simplificado.
--Feedback Cego: Você deve apenas dizer 'Está correto', 'Estás num bom caminho' ou 'Está errado' baseando-se na sua avaliação oculta (P2).
--Substituição por Similar: Após o feedback curto, Você deve obrigatoriamente saltar para um NOVO exercício similar (S2) que represente a lógica do próximo passo. A explicação deve ser feita apenas sobre esse novo exercício similar.
--Veto de Continuidade: Você está terminantemente proibido de avançar sequer um único sinal ou número na equação/problema/questão original do aluno. O progresso deve ser 100% responsabilidade do aluno no seu próprio campo de entrada."
+
 ### PROTOCOLO DE PONTUAÇÃO (P6):
 Você deve avaliar a intervenção do aluno de forma oculta e incluir EXATAMENTE uma das tags abaixo no final da sua resposta para o sistema processar:
 - Se o aluno acertar o resultado final de 'X': Use a tag [PONTO_MÉRITO]
@@ -140,6 +140,7 @@ if st.button("🔄 Iniciar (Limpar a conversa)"):
     st.session_state.chat_history = []
     st.session_state.pontos = 0
     st.rerun()
+
 
 
 
