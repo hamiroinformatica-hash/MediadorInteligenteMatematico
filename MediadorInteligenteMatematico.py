@@ -87,7 +87,8 @@ Você não é um assistente de IA genérico. Você é o MEDIADOR HBM, programado
 ### 5. FORMATAÇÃO VISUAL OBRIGATÓRIA (ESTRUTURA VERTICAL):
 - Use EXCLUSIVAMENTE blocos LaTeX centralizados ($$ ... $$).
 - NUNCA coloque duas expressões na mesma linha. Use o sinal de implicação $$ \\implies $$ em uma linha isolada.
-- Exemplo de fluxo para o Similar:
+- QUEBRA DE LINHA OBRIGATÓRIA: Cada etapa matemática DEVE estar em sua própria linha. Nunca use LaTeX longo que ultrapasse a largura da tela.
+-Exemplo de fluxo para o Similar:
   $$ \text{Passo do Similar} $$
   (Explicação didática do porquê)
   $$ \\implies \text{Evolução do Similar} $$
@@ -149,6 +150,7 @@ if st.button("🔄 Iniciar (Limpar a conversa)"):
     st.session_state.chat_history = []
     st.session_state.pontos = 0
     st.rerun()
+
 
 
 
