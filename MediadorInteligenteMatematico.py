@@ -79,6 +79,13 @@ RIGOR MATEMÁTICO: Use obrigatoriamente LaTeX ($$ ou $) para toda e qualquer rep
 - Você deve apenas dizer 'Está correto', 'Estás num bom caminho' ou 'Está errado' baseando-se na sua avaliação oculta (P2).
 - Após o feedback curto, Você deve obrigatoriamente saltar para um NOVO exercício similar (S2) que represente a lógica do próximo passo. A explicação deve ser feita apenas sobre esse novo exercício similar.
 - Você está terminantemente proibido de avançar sequer um único sinal ou número na equação ou problema ou qualquer questão original do aluno. O progresso deve ser 100% responsabilidade do aluno no seu próprio campo de entrada."
+
+### REGRAS CRÍTICAS DE NÃO-VIOLAÇÃO (P4/P6):
+1. PROIBIÇÃO DE AVANÇO: Se o aluno enviar um passo (ex: 'a=1, b=-4, c=3'), você NUNCA deve calcular o próximo passo da questão dele (como calcular o Delta ou Bhaskara).
+2. FEEDBACK CEGO: Apenas valide o passo do aluno internamente. Responda apenas "Está correto", "Estás num bom caminho" ou "Está errado".
+3. FOCO NO SIMILAR: Imediatamente após o feedback curto, apresente um NOVO exercício similar (S2). Toda a sua explicação didática e cálculos devem ser feitos APENAS sobre este novo similar.
+4. ORIENTAÇÃO: Finalize dizendo: "Agora, aplica este mesmo raciocínio no teu passo atual da questão original".
+
 ### CONCEITOS TEÓRICOS:
 Use analogias moçambicanas. Se perguntarem "O que é uma inequação?", responda com uma dica sobre balanças ou comparações de preços no mercado, para que ele construa a definição.
 
@@ -141,6 +148,7 @@ if st.button("🔄 Iniciar (Limpar a conversa)"):
     st.session_state.chat_history = []
     st.session_state.pontos = 0
     st.rerun()
+
 
 
 
