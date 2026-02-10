@@ -2,132 +2,105 @@ import streamlit as st
 from groq import Groq
 import time
 
-# 1. CONFIGURAÇÃO DA PÁGINA
-st.set_page_config(page_title="TutorIntEqQuadratica", layout="wide")
+# 1. CONFIGURAÇÃO DE INTERFACE
+st.set_page_config(page_title="Mediador IntMatemático", layout="wide")
 
-# 2. INTERFACE E ESTILO (CSS)
+# 2. ESTILO E ASSINATURA (HBM)
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Algerian&display=swap');
-    
-    /* Barra de rolagem robusta para toque */
-    ::-webkit-scrollbar { width: 35px; }
+    ::-webkit-scrollbar { width: 45px !important; }
     ::-webkit-scrollbar-track { background: #f1f1f1; }
-    ::-webkit-scrollbar-thumb { background: #2c3e50; border-radius: 10px; border: 3px solid #f1f1f1; }
-
-    /* Estilização de texto e fórmulas */
-    .stMarkdown p, .katex { font-size: 1.2rem !important; color: #1e293b; }
-    
-    /* Assinatura Fixa */
+    ::-webkit-scrollbar-thumb { background: #000; border-radius: 5px; border: 4px solid #333; }
+    .stMarkdown p, .katex { font-size: 1.25rem !important; color: #1a1a1a; }
+    header {visibility: hidden;} footer {visibility: hidden;}
     .signature-footer {
         position: fixed; bottom: 0; left: 0; width: 100%;
-        background-color: white; padding: 10px 0;
-        text-align: center; z-index: 1000;
-        font-family: 'Algerian', serif; font-size: 18px;
-        border-top: 2px solid #000;
+        background-color: rgba(255, 255, 255, 0.98);
+        padding: 8px 0; text-align: center; z-index: 999;
+        font-family: 'Algerian', serif; font-size: 17px;
+        color: #1e293b; border-top: 1px solid #ddd;
     }
-    
-    header {visibility: hidden;}
-    .main-container { padding-bottom: 100px; }
+    .restore-container { display: flex; justify-content: center; padding-bottom: 110px; }
     </style>
-    <div class="signature-footer">HBM - Mediador Didático</div>
+    <div class="signature-footer">HBM</div>
     """, unsafe_allow_html=True)
 
-# 3. ESTADO DA SESSÃO
+# 3. GESTÃO DE ESTADO E PERSISTÊNCIA
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 if "pontos" not in st.session_state:
     st.session_state.pontos = 0
-if "bloqueado" not in st.session_state:
-    st.session_state.bloqueado = False # Impede novas questões antes de fechar a atual
 
-# Conexão API
-try:
-    client = Groq(api_key=st.secrets["GROQ_API_KEY"])
-except Exception as e:
-    st.error("Erro: Chave API não configurada corretamente nos Secrets.")
-    st.stop()
+client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
-# 4. TÍTULO E PLACAR
-st.title("🎓 Tutor Inteligente: Mediador IntMatemático")
-st.sidebar.metric("Evolução Acumulada", f"{st.session_state.pontos} pts")
-st.sidebar.info("Áreas: Conjuntos, Álgebra, Geometria, Estatística, Cálculo e mais.")
+# 4. TÍTULO E EXIBIÇÃO
+st.title("🎓 Mediador IntMatemático (HBM)")
+st.subheader("Foco em Construtivismo e ZDP")
 
-# 5. PROMPT DE SISTEMA (O REGULAMENTO INVIOLÁVEL)
-PROMPT_SISTEMA = """
-VOCÊ É O PROFESSOR (HBM). VOCÊ OPERA SOB AS LEIS DO CONSTRUTIVISMO E ZDP.
-MISSÃO: Nunca resolver a questão 'X' do aluno. Mediar a construção do conhecimento.
-
-REGRAS INVIOLÁVEIS:
-1. ESCOPO: Matemática total (Cálculo, Álgebra Linear, Geometria, Estatística, etc.). Recuse qualquer tema fora da matemática.
-2. P2 (RESOLUÇÃO OCULTA): Resolva a questão 'X' internamente apenas para obter o resultado 'Y'. JAMAIS mostre isso ao aluno.
-3. P3 & P4 (EXEMPLO ESPELHO): 
-   - Busque uma questão similar 'S1'. 
-   - Apresente a resolução de 'S1' detalhada em LaTeX, passo a passo.
-   - Instrua o aluno: "Agora, aplique esta mesma lógica à sua questão original 'X'".
-4. P6 (AVALIAÇÃO DE INTERVENÇÕES X1, X2, Xn):
-   - Se intervenção == Y (Resultado Final): Diga "Está correto", atribua [PONTO_MÉRITO].
-   - Se intervenção == Caminho Correto mas Incompleto: Diga "Estás num bom caminho", atribua metade de [PONTO_MÉRITO] e apresente um novo exemplo similar 'S2' para o próximo passo.
-   - Se intervenção != Caminho Correto: Diga "Está Errado", não dê pontos, e apresente um novo exemplo 'cS2' corrigindo a lógica.
-5. TEORIA E CONCEITOS: Use analogias moçambicanas (machambas, mangas, mercados, castanhas). Se a definição do aluno tiver 95% de correção face ao conceito acadêmico, atribua [PONTO_MÉRITO].
-6. BLOQUEIO: Não aceite novas questões 'Z' enquanto a questão 'X' não for concluída com sucesso ou o chat limpo.
-7. FORMATAÇÃO: Use sempre LaTeX para matemática. Seja encorajador mas rigoroso.
-"""
-
-# 6. EXIBIÇÃO DO CHAT
 for msg in st.session_state.chat_history:
-    avatar = "🎓" if msg["role"] == "assistant" else "👤"
-    with st.chat_message(msg["role"], avatar=avatar):
+    with st.chat_message(msg["role"], avatar="🎓" if msg["role"] == "assistant" else "👤"):
         st.markdown(msg["content"])
 
-# 7. LOGICA DE INTERAÇÃO
-entrada = st.chat_input("Envie sua questão ou resposta...")
+# 5. PROTOCOLO DE MEDIAÇÃO DIDÁTICA (LÓGICA P1-P6)
+entrada_aluno = st.chat_input("Apresente a sua questão matemática...")
 
-if entrada:
-    # Adiciona fala do aluno
-    st.session_state.chat_history.append({"role": "user", "content": entrada})
+if entrada_aluno:
+    # Registra a entrada do aluno (P1 ou P5)
+    st.session_state.chat_history.append({"role": "user", "content": entrada_aluno})
     with st.chat_message("user", avatar="👤"):
-        st.markdown(entrada)
+        st.markdown(entrada_aluno)
+
+    # PROMPT SISTÊMICO: O CÉREBRO DO PROFESSOR
+    prompt_sistema = (
+        "Você é o 'Mediador IntMatemático' (HBM). Você opera sob o paradigma Construtivista e a Zona de Desenvolvimento Proximal (ZDP).\n\n"
+        "### PROTOCOLO DE OPERAÇÃO OBRIGATÓRIO:\n"
+        "1. **P2 (Cálculo Oculto):** Ao receber a questão 'X', resolva-a internamente para encontrar a solução 'Y'. NUNCA mostre 'X' ou 'Y' ao aluno.\n"
+        "2. **P3 & P4 (Desvio Cognitivo):** Apresente uma questão similar 'S1'. Explique a resolução de 'S1' passo-a-passo com LaTeX e diga: 'Aplique esta lógica à sua questão X'.\n"
+        "3. **P5 & P6 (Avaliação de Intervenção):** Ao receber uma intervenção 'X1':\n"
+        "   - Realize avaliação oculta: 'X1' é matematicamente equivalente à questão original ou ao resultado 'Y'?\n"
+        "   - **Caso (a) - Sucesso Final:** Se 'X1' == 'Y', diga 'Está correto' e atribua obrigatoriamente [PONTO_MÉRITO].\n"
+        "   - **Caso (b) - Caminho Parcial:** Se 'X1' for equivalente mas incompleto, diga 'Estás num bom caminho', atribua [METADE_MÉRITO] e apresente IMEDIATAMENTE um novo similar 'S2' para o próximo passo.\n"
+        "   - **Caso (c) - Erro:** Se 'X1' não for equivalente, diga 'Está errado' (sem pontos) e apresente um novo similar 'S2_Erro' focado na falha lógica cometida.\n"
+        "4. **MEDIAÇÃO TEÓRICA:** Para conceitos, use analogias moçambicanas (machambas, mercados, frutas como manga/castanha). Atribua [PONTO_MÉRITO] apenas se a definição do aluno estiver 95% correta.\n"
+        "5. **RESTRIÇÕES:** Não responda nada fora de Matemática. Não aceite novas questões até concluir a atual (ou o aluno limpar o chat).\n"
+        "6. **ESTILO:** Trate o usuário como 'Aluno' e você como 'Professor'. Use LaTeX ($$)."
+    )
 
     with st.chat_message("assistant", avatar="🎓"):
-        with st.status("Processando mediação didática...", expanded=True) as status:
-            # P3: Simulação de busca pedagógica
-            st.write("🔍 Analisando lógica da sua questão...")
-            time.sleep(1.5)
-            st.write("📂 Buscando exercício similar (S1) na base de dados...")
-            time.sleep(1.5)
-            st.write("✍️ Preparando explicação passo a passo...")
-            time.sleep(1.0)
-            status.update(label="Processamento Concluído!", state="complete", expanded=False)
-
-        try:
-            response = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
-                messages=[{"role": "system", "content": PROMPT_SISTEMA}] + st.session_state.chat_history,
-                temperature=0.0
-            )
-            feedback = response.choices[0].message.content
-
-            # Gestão de Pontos (Sinalizadores do Sistema)
-            if "[PONTO_MÉRITO]" in feedback:
-                # Se for metade do ponto (caminho certo)
-                if "Estás num bom caminho" in feedback:
-                    st.session_state.pontos += 10
-                    feedback = feedback.replace("[PONTO_MÉRITO]", "\n\n✨ **+10 pontos (Bom caminho!)**")
-                else:
+        status_placeholder = st.empty()
+        with st.spinner("Professor a processar mediação pedagógica..."):
+            # P3: Simulação de processamento técnico para busca de similar
+            time.sleep(2.8) 
+            
+            try:
+                # O histórico completo garante que o professor lembre da questão X original (P1)
+                response = client.chat.completions.create(
+                    model="llama-3.3-70b-versatile",
+                    messages=[{"role": "system", "content": prompt_sistema}] + st.session_state.chat_history,
+                    temperature=0.1
+                )
+                feedback = response.choices[0].message.content
+                
+                # Processamento de Pontuação no Backend do App
+                if "[PONTO_MÉRITO]" in feedback:
                     st.session_state.pontos += 20
-                    feedback = feedback.replace("[PONTO_MÉRITO]", "\n\n🏆 **+20 pontos (Domínio Completo!)**")
+                    feedback = feedback.replace("[PONTO_MÉRITO]", "\n\n✨ **Parabéns! Alcançaste a meta. +20 pontos de mérito!**")
+                elif "[METADE_MÉRITO]" in feedback:
+                    st.session_state.pontos += 10
+                    feedback = feedback.replace("[METADE_MÉRITO]", "\n\n📈 **Boa evolução! +10 pontos (Metade do mérito).**")
+                
+                st.markdown(feedback)
+                st.session_state.chat_history.append({"role": "assistant", "content": feedback})
+                st.rerun()
+            except Exception as e:
+                st.error("Erro na comunicação com o servidor. Tente novamente.")
 
-            st.markdown(feedback)
-            st.session_state.chat_history.append({"role": "assistant", "content": feedback})
-            st.rerun()
-
-        except Exception as e:
-            st.error(f"Erro na conexão com o cérebro da IA: {e}")
-
-# 8. BOTÃO DE RESET (PARA NOVAS QUESTÕES)
-st.sidebar.markdown("---")
-if st.sidebar.button("🔄 Reiniciar Professor (Limpar Chat)"):
+# 6. RODAPÉ DE PONTOS E REINICIALIZAÇÃO
+st.write(f"**Evolução Acumulada do Aluno:** {st.session_state.pontos} pontos")
+st.markdown("<div class='restore-container'>", unsafe_allow_html=True)
+if st.button("🔄 Reiniciar Professor (Limpar e Nova Questão)"):
     st.session_state.chat_history = []
     st.session_state.pontos = 0
     st.rerun()
+st.markdown("</div>", unsafe_allow_html=True)
