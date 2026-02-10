@@ -7,29 +7,25 @@ st.set_page_config(page_title="Mediador IntMatemático HBM", layout="wide")
 
 st.markdown("""
     <style>
-    /* Barra de rolagem otimizada para toque */
     ::-webkit-scrollbar { width: 30px !important; }
     ::-webkit-scrollbar-thumb { background: #000; border-radius: 5px; }
-
-    /* Estilo para fórmulas LaTeX verticais */
     .katex-display { 
         font-size: 1.4rem !important; 
-        padding: 15px; 
-        background: #f8f9fa; 
-        border-left: 6px solid #000; 
-        border-radius: 4px;
+        padding: 20px; 
+        background: #fdfdfd; 
+        border-left: 8px solid #000; 
+        margin: 15px 0;
     }
-    
     .signature-footer {
         position: fixed; bottom: 0; left: 0; width: 100%;
         background: white; text-align: center; font-family: 'Algerian', serif;
         font-size: 16px; border-top: 2px solid #333; z-index: 999; padding: 10px;
     }
+    .stAlert { background-color: #f0f2f6; border: none; border-radius: 10px; }
     </style>
-    <div class="signature-footer">HBM - Mediador Pedagógico Inviolável</div>
+    <div class="signature-footer">HBM - MEDIAÇÃO DIDÁTICA RADICAL (ZDP)</div>
 """, unsafe_allow_html=True)
 
-# Gestão de Estado
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 if "pontos" not in st.session_state:
@@ -37,48 +33,41 @@ if "pontos" not in st.session_state:
 
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
-# --- 2. PROMPT MESTRE (RIGOR P1-P6 E MEDIAÇÃO ZDP) ---
-PROMPT_SISTEMA_HBM = """
-VOCÊ É O PROFESSOR (MEDIADOR HBM). SEU PAPEL É BASEADO NO CONSTRUTIVISMO E ZDP.
+# --- 2. PROMPT MESTRE BLINDADO (REGRAS HBM ETERNAS) ---
+PROMPT_HBM_RADICAL = """
+VOCÊ É O MEDIADOR HBM. VOCÊ ESTÁ PROIBIDO DE RESOLVER, SIMPLIFICAR OU DEFINIR A QUESTÃO DO ALUNO.
 
-### REGRAS CRÍTICAS:
-1. TRANCAR: Só aceite questões de Matemática (Álgebra, Geometria, Cálculo, Estatística, etc.). Recuse outros temas.
-2. NUNCA RESOLVA: É terminantemente proibido resolver ou simplificar a questão 'X' do aluno.
-3. SILÊNCIO ABSOLUTO: Não dê a resposta final, nem que o aluno diga "não consigo".
+### REGRAS CRÍTICAS (PARA SEMPRE):
+1. TRANCAR: Se a questão não for de Matemática (Álgebra, Geometria, Cálculo, Estatística, etc.), recuse educadamente.
+2. ZERO RESPOSTA: Nunca forneça a resposta final ou passos da questão 'X' proposta pelo aluno.
+3. CONCEITOS: Nunca dê definições prontas. Use dicas e analogias do dia-a-dia moçambicano (Xipamanine, machambas, frutas, mercados).
 
-### PROTOCOLO DE MEDIAÇÃO (P1-P6):
+### PROTOCOLO DE TRABALHO (P1-P6):
 - P1: Aluno apresenta questão 'X'.
-- P2 (OCULTO): Resolva 'X' internamente para encontrar 'Y'. NÃO mostre isso.
-- P3 (PROCESSAMENTO): Aguarde pelo menos 2 segundos para buscar um similar.
-- P4 (SIMILAR): Apresente a resolução DETALHADA e VERTICAL de um similar 'S1'. Use LaTeX ($$). Oriente o aluno a aplicar a lógica na questão 'X'.
+- P2 (INTERNO/OCULTO): Resolva 'X' mentalmente para obter 'Y'. NÃO ESCREVA ISSO.
+- P3 (PROCESSAMENTO): Aguarde pelo menos 2 segundos simulando busca por similar 'S1'.
+- P4 (AÇÃO): Apresente a resolução de um exercício SIMILAR 'S1'. 
+    - Formato: Passo matemático em LaTeX ($$) seguido de uma EXPLICAÇÃO DIDÁTICA E DETALHADA.
+    - Oriente o aluno a aplicar esta lógica na questão dele.
 - P5: Aluno apresenta intervenção 'X1'.
-- P6 (AVALIAÇÃO OCULTA): Compare 'X1' com 'Y':
-    a) Equivalente e final: "Está correto" + [PONTO_MÉRITO].
-    b) Equivalente parcial: "Estás num bom caminho" + metade de [PONTO_MÉRITO]. Apresente IMEDIATAMENTE um novo similar 'S2' para o passo seguinte.
-    c) Erro: "Está errado". Apresente similar 'c)S2' focado no erro.
+- P6 (AVALIAÇÃO OCULTA): Compare 'X1' com seu 'Y' interno.
+    a) EQUIVALENTE FINAL: Diga apenas "Está correto" e atribua [PONTO_MÉRITO].
+    b) EQUIVALENTE PARCIAL: Diga "Estás num bom caminho" e atribua [MEIO_PONTO]. Apresente IMEDIATAMENTE um novo similar 'S2' para o próximo passo.
+    c) NÃO EQUIVALENTE: Diga "Está errado". Apresente um similar 'c)S2' focado no erro.
 
-### CONCEITOS TEÓRICOS:
-Use analogias do dia-a-dia moçambicano (mercados, machambas, locais). Valide definições apenas se tiverem 95% de precisão.
+### RIGOR VISUAL:
+RIGOR MATEMÁTICO LATEX: Use obrigatoriamente LaTeX ($$ ou $) para toda e qualquer representação numérica ou algébrica
 
-### FORMATO VISUAL OBRIGATÓRIO:
-$$
-\\begin{aligned}
-& Expressão \\\\
-& \\implies Passo 1 \\\\
-& \\implies Resultado
-\\end{aligned}
-$$
-"""
+# --- 3. INTERFACE E LÓGICA DE EXECUÇÃO ---
+st.title("🎓 Mediador IntMatemático HBM")
+st.subheader(f"🏆 Pontuação Acumulada: {st.session_state.pontos}")
 
-# --- 3. INTERFACE DE CHAT ---
-st.title("🎓 Mediador IntMatemático")
-st.write(f"📊 **Pontuação de Mérito:** {st.session_state.pontos}")
-
+# Exibição do histórico
 for msg in st.session_state.chat_history:
     with st.chat_message(msg["role"], avatar="🎓" if msg["role"] == "assistant" else "👤"):
         st.markdown(msg["content"])
 
-entrada = st.chat_input("Apresente a sua questão ou o próximo passo...")
+entrada = st.chat_input("Insira sua questão ou tentativa de resolução...")
 
 if entrada:
     st.session_state.chat_history.append({"role": "user", "content": entrada})
@@ -86,38 +75,39 @@ if entrada:
         st.markdown(entrada)
 
     with st.chat_message("assistant", avatar="🎓"):
-        with st.spinner("O Professor está a analisar a sua contribuição..."):
-            time.sleep(2.5) # Simulação de tempo de mediação
+        placeholder = st.empty()
+        placeholder.markdown("⏳ *Professor HBM a analisar a sua proposta...*")
+        time.sleep(3) # Delay obrigatório de processamento P3/P6
+        
+        try:
+            response = client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[{"role": "system", "content": PROMPT_HBM_RADICAL}] + st.session_state.chat_history,
+                temperature=0.0
+            )
             
-            try:
-                response = client.chat.completions.create(
-                    model="llama-3.3-70b-versatile",
-                    messages=[{"role": "system", "content": PROMPT_SISTEMA_HBM}] + st.session_state.chat_history,
-                    temperature=0.0
-                )
-                
-                feedback = response.choices[0].message.content
-                
-                # Gamificação P6
-                if "[PONTO_MÉRITO]" in feedback:
-                    st.session_state.pontos += 20
-                    feedback = feedback.replace("[PONTO_MÉRITO]", "\n\n🌟 **Excelente! Objetivo atingido. +20 pontos!**")
-                elif "[MEIO_PONTO]" in feedback:
-                    st.session_state.pontos += 10
-                    feedback = feedback.replace("[MEIO_PONTO]", "\n\n🚀 **Bom progresso! +10 pontos.**")
+            feedback = response.choices[0].message.content
+            
+            # Sistema de Pontuação P6
+            if "[PONTO_MÉRITO]" in feedback:
+                st.session_state.pontos += 20
+                feedback = feedback.replace("[PONTO_MÉRITO]", "\n\n✨ **Objetivo Final Atingido! +20 pontos.**")
+            elif "[MEIO_PONTO]" in feedback:
+                st.session_state.pontos += 10
+                feedback = feedback.replace("[MEIO_PONTO]", "\n\n🚀 **Passo Correto! Continua a aplicar a lógica. +10 pontos.**")
 
-                st.markdown(feedback)
-                st.session_state.chat_history.append({"role": "assistant", "content": feedback})
-                st.rerun()
-                
-            except Exception:
-                st.error("Erro de conexão. Por favor, tente novamente.")
+            placeholder.markdown(feedback)
+            st.session_state.chat_history.append({"role": "assistant", "content": feedback})
+            st.rerun()
 
-# --- 4. BOTÃO DE RESTAURO CENTRALIZADO ---
+        except Exception:
+            st.error("Erro de comunicação. Por favor, reinicie ou tente novamente.")
+
+# --- 4. BOTÃO DE RESTAURO (REINÍCIO DO PROTOCOLO) ---
 st.markdown("<br><br>", unsafe_allow_html=True)
-c1, c2, c3 = st.columns([1,2,1])
-with c2:
-    if st.button("🔄 Restaurar Professor (Nova Questão)", use_container_width=True):
+col1, col2, col3 = st.columns([1,2,1])
+with col2:
+    if st.button("🔄 Reiniciar Professor (Nova Questão)", use_container_width=True):
         st.session_state.chat_history = []
         st.session_state.pontos = 0
         st.rerun()
