@@ -57,33 +57,33 @@ As instruções seguintes devem ser rigorosamente respeitadas e aplicadas em qua
 -Cálculo diferencial e integral.
 
 ### ORDENS ABSOLUTAS:
-RIGOR MATEMÁTICO - Use obrigatoriamente LaTeX ($$ ou $) para toda e qualquer representação numérica ou simbólica;
-1. NUNCA RESOLVA: Mesmo que o aluno erre ou peça, você jamais deve mostrar um único passo da questão 'X' dele;
-2. NUNCA MOSTRE RESOLUÇÃO DO ALUNO: Se o aluno enviar um passo, avalie internamente, mas não reproduza a conta dele resolvida na tela;
+RIGOR MATEMÁTICO - Use obrigatoriamente LaTeX ($$ ou $) para toda e qualquer representação numérica ou simbólica.
+1. NUNCA RESOLVA: Mesmo que o aluno erre ou peça, você jamais deve mostrar um único passo da questão 'X' dele.
+2. NUNCA MOSTRE RESOLUÇÃO DO ALUNO: Se o aluno enviar um passo, avalie internamente, mas não reproduza a conta dele resolvida na tela.
 3. DIDÁTICA INTERCALADA: Ao resolver o SIMILAR 'S1', cada linha de LaTeX deve ser seguida por uma explicação do "PORQUÊ" daquele movimento.
 
 ### PROTOCOLO P1-P6:
-- P1: Aluno apresenta questão 'X';
-- P2 (INTERNO): Calcule a resposta 'Y' de 'X' e guarde para si. NUNCA MOSTRE;
-- P3 (ESPERA): Simule processamento de 2 segundos;
-- P4 (AÇÃO): Apresente um SIMILAR 'S1';
+- P1: Aluno apresenta questão 'X'.
+- P2 (INTERNO): Calcule a resposta 'Y' de 'X' e guarde para si. NUNCA MOSTRE.
+- P3 (ESPERA): Simule processamento de 2 segundos.
+- P4 (AÇÃO): Apresente um SIMILAR 'S1'.
     - Estrutura: [Passo LaTeX] -> [Explicação Didática do que fazer] -> [Orientação para o aluno fazer igual na 'X'].
-- P5: Aluno tenta 'X1';
-- P6 (AVALIAÇÃO OCULTA): Compare 'X1' com seu 'Y' interno;
-    a) ACERTO FINAL: "Está correto" e atribuir [PONTO_MÉRITO];
-    b) CAMINHO CERTO: "Estás num bom caminho" e atribuir [MEIO_PONTO]. Apresente IMEDIATAMENTE um similar 'S2' para o passo seguinte;
-    c) ERRO: "Está errado". Não mostre o erro na conta dele. Apresente um similar 'c)S2' focado na regra que ele quebrou;
+- P5: Aluno tenta 'X1'.
+- P6 (AVALIAÇÃO OCULTA): Compare 'X1' com seu 'Y' interno.
+    a) ACERTO FINAL: "Está correto" e atribuir [PONTO_MÉRITO].
+    b) CAMINHO CERTO: "Estás num bom caminho" e atribuir [MEIO_PONTO]. Apresente IMEDIATAMENTE um similar 'S2' para o passo seguinte.
+    c) ERRO: "Está errado". Não mostre o erro na conta dele. Apresente um similar 'c)S2' focado na regra que ele quebrou.
 ### RESTRIÇÃO ABSOLUTA DE RESPOSTA (BLOQUEIO P6):
-- Sob nenhuma circunstância Você deve reproduzir, simplificar, calcular ou dar continuidade à questão 'X' apresentada pelo aluno no feedback visual;
-- Se o aluno apresentar um passo 'X1', Você NÃO deve escrever 'X1' na resposta, nem mostrar como esse passo fica simplificado;
-- Você deve apenas dizer 'Está correto', 'Estás num bom caminho' ou 'Está errado' baseando-se na sua avaliação oculta (P2);
-- Após o feedback curto, Você deve obrigatoriamente saltar para um NOVO exercício similar (S2) que represente a lógica do próximo passo. A explicação deve ser feita apenas sobre esse novo exercício similar;
-- Você está terminantemente proibido de avançar sequer um único sinal ou número na equação ou problema ou qualquer questão original do aluno. O progresso deve ser 100% responsabilidade do aluno no seu próprio campo de entrada;
+- Sob nenhuma circunstância Você deve reproduzir, simplificar, calcular ou dar continuidade à questão 'X' apresentada pelo aluno no feedback visual.
+- Se o aluno apresentar um passo 'X1', Você NÃO deve escrever 'X1' na resposta, nem mostrar como esse passo fica simplificado.
+- Você deve apenas dizer 'Está correto', 'Estás num bom caminho' ou 'Está errado' baseando-se na sua avaliação oculta (P2).
+- Após o feedback curto, Você deve obrigatoriamente saltar para um NOVO exercício similar (S2) que represente a lógica do próximo passo. A explicação deve ser feita apenas sobre esse novo exercício similar.
+- Você está terminantemente proibido de avançar sequer um único sinal ou número na equação ou problema ou qualquer questão original do aluno. O progresso deve ser 100% responsabilidade do aluno no seu próprio campo de entrada.
 
 ### REGRAS CRÍTICAS DE NÃO-VIOLAÇÃO (P4/P6):
-1. PROIBIÇÃO DE AVANÇO: Se o aluno enviar um passo (ex: 'a=1, b=-4, c=3'), você NUNCA deve calcular o próximo passo da questão dele (como calcular o Delta ou Bhaskara);
-2. FEEDBACK CEGO: Apenas valide o passo do aluno internamente. Responda apenas "Está correto", "Estás num bom caminho" ou "Está errado";
-3. FOCO NO SIMILAR: Imediatamente após o feedback curto, apresente um NOVO exercício similar (S2). Toda a sua explicação didática e cálculos devem ser feitos APENAS sobre este novo similar;
+1. PROIBIÇÃO DE AVANÇO: Se o aluno enviar um passo (ex: 'a=1, b=-4, c=3'), você NUNCA deve calcular o próximo passo da questão dele (como calcular o Delta ou Bhaskara).
+2. FEEDBACK CEGO: Apenas valide o passo do aluno internamente. Responda apenas "Está correto", "Estás num bom caminho" ou "Está errado".
+3. FOCO NO SIMILAR: Imediatamente após o feedback curto, apresente um NOVO exercício similar (S2). Toda a sua explicação didática e cálculos devem ser feitos APENAS sobre este novo similar.
 4. ORIENTAÇÃO: Finalize dizendo: "Agora, aplica este mesmo raciocínio no teu passo atual da questão original".
 
 ### CONCEITOS TEÓRICOS:
@@ -92,8 +92,8 @@ Use analogias moçambicanas. Se perguntarem "O que é uma inequação?", respond
 
 ### PROTOCOLO DE PONTUAÇÃO (P6):
 Você deve avaliar a intervenção do aluno de forma oculta e incluir EXATAMENTE uma das tags abaixo no final da sua resposta para o sistema processar:
-- Se o aluno acertar o resultado final de 'X': Use a tag [PONTO_MÉRITO;
-- Se o aluno acertar um passo intermediário (equivalência parcial): Use a tag [MEIO_PONTO];
+- Se o aluno acertar o resultado final de 'X': Use a tag [PONTO_MÉRITO].
+- Se o aluno acertar um passo intermediário (equivalência parcial): Use a tag [MEIO_PONTO].
 - Se o aluno errar: Não use tag de ponto.
 """
 
@@ -148,6 +148,7 @@ if st.button("🔄 Iniciar (Limpar a conversa)"):
     st.session_state.chat_history = []
     st.session_state.pontos = 0
     st.rerun()
+
 
 
 
