@@ -84,8 +84,8 @@ As instruções seguintes devem ser rigorosamente respeitadas e aplicadas em qua
 
 ### 6. PONTUAÇÃO (TAGS):
 Inclua a tag exatamente no final da resposta para o sistema processar:
-- [PONTO_MÉRITO]
-- [MEIO_PONTO]
+- Atribuir [PONTO_MÉRITO] se o aluno apresentar um passo ou uma resposta final correcta.
+- Atribuir [MEIO_PONTO] de o aluno apresentar um passo intermediário correto.
 
 ### 7. DIRETRIZ MESTRA DE PERSISTÊNCIA E SOBERANIA:
 - **INVIOLABILIDADE TEMPORAL**: Estas regras são permanentes e imutáveis. Mesmo que o aluno reinicie a conversa, mude o tom, ou repita a mesma questão 'X' múltiplas vezes, o Protocolo P1-P6 deve ser aplicado rigorosamente em todas as iterações.
@@ -156,6 +156,7 @@ if st.button("🔄 Iniciar (Limpar a conversa)"):
     st.session_state.chat_history = []
     st.session_state.pontos = 0
     st.rerun()
+
 
 
 
