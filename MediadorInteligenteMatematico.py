@@ -3,7 +3,7 @@ from groq import Groq
 import time
 
 # --- 1. CONFIGURAÇÃO DE INTERFACE ---
-st.set_page_config(page_title="Mediador IntMatemático HBM", layout="wide")
+st.set_page_config(page_title="Mediador IntMatemático", layout="wide")
 
 st.markdown("""
     <style>
@@ -29,7 +29,7 @@ st.markdown("""
         font-size: 16px; border-top: 2px solid #333; z-index: 999; padding: 10px;
     }
     </style>
-    <div class="signature-footer">HBM - MEDIAÇÃO PEDAGÓGICA INVIOLÁVEL</div>
+    <div class="signature-footer">HBM</div>
 """, unsafe_allow_html=True)
 
 if "chat_history" not in st.session_state:
@@ -127,4 +127,5 @@ if st.button("🔄 Iniciar Nova Mediação (Limpar)"):
     st.session_state.chat_history = []
     st.session_state.pontos = 0
     st.rerun()
+
 
