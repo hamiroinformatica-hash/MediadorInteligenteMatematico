@@ -39,8 +39,8 @@ if "pontos" not in st.session_state:
 
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
-# --- 2. PROMPT MESTRE (RIGOR DIDÁTICO INTERCALADO) ---
-PROMPT_HBM_FINAL = """
+# --- 2. PROMPT de Regras (RIGOR DIDÁTICO INTERCALADO) ---
+PROMPT_DE_REGRAS = """
 VOCÊ É O MEDIADOR HBM. VOCÊ OPERA SOB O REGIME DE CONSTRUTIVISMO RADICAL.
 TRANCA DE ÁREA: Se o tema não for Matemática (Aritmética, Álgebra, Geometria, Cálculo, Estatística, Matemática Discreta)
 bloqueie o avanço. Responda: 'Este mediador opera exclusivamente em conteúdos matemáticos.
@@ -75,18 +75,25 @@ As instruções seguintes devem ser rigorosamente respeitadas e aplicadas em qua
 
 ### CONCEITOS TEÓRICOS:
 Use analogias moçambicanas. Se perguntarem "O que é uma inequação?", responda com uma dica sobre balanças ou comparações de preços no mercado, para que ele construa a definição.
+
+### PROTOCOLO DE PONTUAÇÃO (P6):
+Você deve avaliar a intervenção do aluno de forma oculta e incluir EXATAMENTE uma das tags abaixo no final da sua resposta para o sistema processar:
+- Se o aluno acertar o resultado final de 'X': Use a tag [PONTO_MÉRITO]
+- Se o aluno acertar um passo intermediário (equivalência parcial): Use a tag [MEIO_PONTO]
+- Se o aluno errar: Não use tag de ponto.
 """
 
-# --- 3. EXECUÇÃO DO SISTEMA ---
+# --- 3. INTERFACE E LÓGICA DE PONTUAÇÃO ---
 st.title("🎓 Mediador IntMatemático")
-st.markdown(f"### 🏆 Pontuação: `{st.session_state.pontos}`")
+# Exibição da pontuação em destaque
+st.metric(label="MÉRITO ACUMULADO", value=f"{st.session_state.pontos} Pts")
 
 # Mostrar histórico de forma limpa
 for msg in st.session_state.chat_history:
     with st.chat_message(msg["role"], avatar="🎓" if msg["role"] == "assistant" else "👤"):
         st.markdown(msg["content"])
 
-entrada = st.chat_input("Apresente sua questão ou passo aqui...")
+entrada = st.chat_input("Apresente a sua questão matemática...")
 
 if entrada:
     st.session_state.chat_history.append({"role": "user", "content": entrada})
@@ -95,13 +102,13 @@ if entrada:
 
     with st.chat_message("assistant", avatar="🎓"):
         placeholder = st.empty()
-        placeholder.markdown("🔍 *Analisando logicamente (Mediação HBM)...*")
+        placeholder.markdown("🔍 *Analisando...*")
         time.sleep(2) 
         
         try:
             response = client.chat.completions.create(
                 model="llama-3.3-70b-versatile",
-                messages=[{"role": "system", "content": PROMPT_HBM_FINAL}] + st.session_state.chat_history,
+                messages=[{"role": "system", "content": PROMPT_DE_REGRAS}] + st.session_state.chat_history,
                 temperature=0.0
             )
             
@@ -110,10 +117,10 @@ if entrada:
             # Atualização de Pontos
             if "[PONTO_MÉRITO]" in feedback:
                 st.session_state.pontos += 20
-                feedback = feedback.replace("[PONTO_MÉRITO]", "\n\n✅ **Excelente! Concluíste o desafio com sucesso.**")
+                feedback = feedback.replace("[PONTO_MÉRITO]", "\n\n **Excelente! Concluíste o desafio com sucesso.**")
             elif "[MEIO_PONTO]" in feedback:
                 st.session_state.pontos += 10
-                feedback = feedback.replace("[MEIO_PONTO]", "\n\n📈 **Boa evolução! Continua assim.**")
+                feedback = feedback.replace("[MEIO_PONTO]", "\n\n **Boa evolução! Continua assim.**")
 
             placeholder.markdown(feedback)
             st.session_state.chat_history.append({"role": "assistant", "content": feedback})
@@ -123,9 +130,10 @@ if entrada:
             st.error("Erro de rede. Tente novamente.")
 
 # --- 4. BOTÃO DE REINÍCIO ---
-if st.button("🔄 Iniciar Nova Mediação (Limpar)"):
+if st.button("🔄 Iniciar (Limpar a conversa)"):
     st.session_state.chat_history = []
     st.session_state.pontos = 0
     st.rerun()
+
 
 
