@@ -2,37 +2,47 @@ import streamlit as st
 from groq import Groq
 import time
 
-# --- 1. CONFIGURAÇÃO DE INTERFACE E BOTÕES DE NAVEGAÇÃO ---
+# --- 1. CONFIGURAÇÃO DE INTERFACE E ACESSIBILIDADE ---
 st.set_page_config(page_title="Mediador IntMatemático HBM", layout="wide")
 
-# CSS para os botões em losango (fixos à direita) e botões de restauração
+# CSS para Botões em Losango e Estilo Visual Moçambicano
 st.markdown("""
     <style>
-    .fixed-nav {
-        position: fixed; top: 50%; right: 20px;
-        display: flex; flex-direction: column; gap: 10px; z-index: 1001;
+    /* Botões em Losango fixos à direita */
+    .nav-container {
+        position: fixed; right: 20px; top: 50%; transform: translateY(-50%);
+        display: flex; flex-direction: column; gap: 20px; z-index: 1000;
     }
     .diamond-btn {
-        width: 50px; height: 50px; background: #000; color: white;
-        border: 2px solid #fff; transform: rotate(45-deg);
+        width: 55px; height: 55px; background: #000; color: white;
+        border: 2px solid white; transform: rotate(45deg);
         display: flex; align-items: center; justify-content: center;
-        cursor: pointer; font-size: 20px;
+        cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
-    .diamond-text { transform: rotate(-45deg); }
+    .diamond-btn span { transform: rotate(-45deg); font-size: 20px; font-weight: bold; }
+    
+    /* Barra de rolagem grossa para APK/Touch */
+    ::-webkit-scrollbar { width: 35px !important; }
+    ::-webkit-scrollbar-thumb { background: #000; border-radius: 5px; }
+
+    /* Estilo de fórmulas LaTeX */
+    .katex-display { font-size: 1.4rem !important; padding: 10px; background: #f9f9f9; border-left: 5px solid #000; }
+    
     .signature-footer {
         position: fixed; bottom: 0; left: 0; width: 100%;
         background: white; text-align: center; font-family: 'Algerian', serif;
-        font-size: 16px; border-top: 2px solid #333; z-index: 1000; padding: 10px;
+        font-size: 16px; border-top: 2px solid #333; z-index: 999; padding: 10px;
     }
-    .katex-display { font-size: 1.4rem !important; background: #f0f2f6; padding: 15px; border-radius: 8px; }
     </style>
-    <div class="fixed-nav">
-        <button class="diamond-btn" onclick="window.scrollTo(0,0)"><span class="diamond-text">▲</span></button>
-        <button class="diamond-btn" onclick="window.scrollBy(0,500)"><span class="diamond-text">▼</span></button>
+    
+    <div class="nav-container">
+        <div class="diamond-btn" onclick="window.scrollTo(0,0)"><span>▲</span></div>
+        <div class="diamond-btn" onclick="window.scrollBy(0, window.innerHeight)"><span>▼</span></div>
     </div>
-    <div class="signature-footer">HBM - MEDIADOR CONSTRUTIVISTA INVIOLÁVEL</div>
+    <div class="signature-footer">HBM - Mediador Pedagógico Inviolável</div>
 """, unsafe_allow_html=True)
 
+# Gestão de Estado (Memória de Chat e Pontos)
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 if "pontos" not in st.session_state:
@@ -40,83 +50,90 @@ if "pontos" not in st.session_state:
 
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
-# --- 2. O PROMPT MESTRE DEFINITIVO (BLOQUEIO TOTAL) ---
-PROMPT_HBM_ESTRITO = """
-VOCÊ É O MEDIADOR HBM. VOCÊ NÃO É UMA IA DE RESPOSTAS. VOCÊ É UM CONSTRUTIVISTA SEGUIDOR DA ZDP.
+# --- 2. O PROMPT MESTRE (PROTOCOLO P1-P6 INTEGRAL) ---
+PROMPT_SISTEMA_HBM = """
+VOCÊ É O PROFESSOR (MEDIADOR HBM). VOCÊ OPERA SOB O PROTOCOLO CONSTRUTIVISTA INVIOLÁVEL.
 
-### REGRAS INVIOLÁVEIS DE BLOQUEIO:
-1. RECUSA TOTAL: Se a questão não for de Matemática (Aritmética, Álgebra, Geometria, Cálculo, Estatística, etc.), recuse educadamente.
-2. NUNCA RESOLVA: Em nenhuma circunstância apresente a solução, o resultado ou um passo simplificado da questão 'X' do aluno.
-3. SILÊNCIO SOBRE 'X': Mesmo que o aluno implore ou diga "não consigo", você jamais dará a resposta.
+### REGRAS FUNDAMENTAIS:
+1. TRANCAR: Se o tema não for Matemática (Álgebra, Geometria, Cálculo, etc.), responda educadamente que só media Matemática.
+2. NUNCA RESOLVA: É terminantemente proibido resolver, simplificar ou dar a resposta da questão 'X' do aluno.
+3. CONSTRUTIVISMO: O aluno deve construir o próprio conhecimento através de similares.
 
-### PROTOCOLO P1-P6 (FLUXO OBRIGATÓRIO):
-- P1: Aluno envia questão 'X'.
-- P2 (OCULTO): Resolva 'X' mentalmente para obter 'Y'. Não escreva isso no chat.
-- P3/P4 (MEDIAÇÃO): Processe por alguns segundos. Apresente a resolução de um exercício SIMILAR 'S1' de mesma natureza. A resolução de 'S1' deve ser CLARA, DETALHADA, DIDÁTICA e PASSO-A-PASSO usando:
-  $$ \\begin{aligned} & Passo 1 \\\\ & \\implies Passo 2 \\\\ & \\implies Resultado \\end{aligned} $$
-  Instrua o aluno a seguir essa lógica sem você mexer na questão dele.
-- P5 (INTERVENÇÃO): O aluno envia 'X1'.
-- P6 (AVALIAÇÃO OCULTA): Compare 'X1' com seu 'Y' (do P2).
-  a) EQUIVALENTE E FINAL: Diga "Está correto" e use [PONTO_MÉRITO].
-  b) EQUIVALENTE MAS PARCIAL: Diga "Estás num bom caminho" e use [MEIO_PONTO]. Apresente IMEDIATAMENTE um novo similar 'S2' para o próximo passo necessário.
-  c) NÃO EQUIVALENTE (ERRO): Diga "Está errado". Não dê pontos. Apresente um similar 'c)S2' focado no erro cometido.
+### PROTOCOLO DE MEDIAÇÃO (P1-P6):
+- P1: Aluno apresenta questão 'X'.
+- P2 (OCULTO): Resolva 'X' mentalmente para encontrar a resposta final 'Y'. NUNCA mostre isso.
+- P3 (PROCESSAMENTO): Aguarde a busca por um similar 'S1'.
+- P4 (SIMILAR): Apresente a resolução DETALHADA, PASSO-A-PASSO e VERTICAL de um exercício similar 'S1'. Use LaTeX ($$). Instrua o aluno a seguir a lógica em 'X', sem você tocar em 'X'.
+- P5: Aluno apresenta intervenção 'X1'.
+- P6 (AVALIAÇÃO OCULTA): Compare 'X1' com 'Y' de forma oculta:
+    a) Se equivalente e final: Diga "Está correto" e use [PONTO_MÉRITO].
+    b) Se equivalente mas parcial: Diga "Estás num bom caminho" e use [MEIO_PONTO]. Apresente IMEDIATAMENTE um novo similar 'S2' para o passo seguinte.
+    c) Se não equivalente (erro): Diga "Está errado". Não dê pontos. Apresente um novo similar 'c)S2' que trate especificamente da falha do aluno.
 
-### CASOS TEÓRICOS/CONCEITOS:
-NUNCA dê a definição. Use analogias moçambicanas (Xipamanine, machambas, castanha, mercados) para que o aluno construa o conceito. Só valide com [PONTO_MÉRITO] se ele atingir 95% de precisão.
+### CONCEITOS TEÓRICOS:
+NUNCA dê a definição. Use analogias moçambicanas (mercados, machambas, transporte, frutas) para induzir o pensamento socrático. Atribua pontos apenas se a definição do aluno atingir 95% de precisão.
 
-### REGRAS VISUAIS:
-- Use sempre LaTeX verticalizado com símbolos de implicação.
-- Mantenha a comunicação ativa do início ao fim.
-- Não avance para outra questão sem encerrar a atual ou limpar o chat.
+### FORMATO VISUAL:
+Use sempre alinhamento vertical em LaTeX:
+$$
+\\begin{aligned}
+& Expressão \\\\
+& \\implies Passo 1 \\\\
+& \\implies Resultado
+\\end{aligned}
+$$
 """
 
-# --- 3. EXECUÇÃO DO CHAT ---
-st.title("🎓 Mediador Pedagógico HBM")
-st.write(f"🏆 **Pontuação de Mérito:** {st.session_state.pontos}")
+# --- 3. INTERFACE E LOGICA ---
+st.title("🎓 Mediador IntMatemático")
+st.write(f"📊 **Pontuação de Evolução:** {st.session_state.pontos}")
 
+# Exibição do Chat
 for msg in st.session_state.chat_history:
     with st.chat_message(msg["role"], avatar="🎓" if msg["role"] == "assistant" else "👤"):
         st.markdown(msg["content"])
 
-entrada_aluno = st.chat_input("Insira sua questão ou passo aqui...")
+entrada = st.chat_input("Apresente sua questão matemática ou passo de resolução...")
 
-if entrada_aluno:
-    st.session_state.chat_history.append({"role": "user", "content": entrada_aluno})
+if entrada:
+    st.session_state.chat_history.append({"role": "user", "content": entrada})
     with st.chat_message("user", avatar="👤"):
-        st.markdown(entrada_aluno)
+        st.markdown(entrada)
 
     with st.chat_message("assistant", avatar="🎓"):
-        placeholder = st.empty()
-        placeholder.markdown("⏳ *Professor está processando a mediação...*")
-        time.sleep(3) # Delay obrigatório de P3/P6
-        
-        try:
-            response = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
-                messages=[{"role": "system", "content": PROMPT_HBM_ESTRITO}] + st.session_state.chat_history,
-                temperature=0.0
-            )
+        with st.spinner("Professor a processar mediação pedagógica..."):
+            # Delay pedagógico obrigatório (P3/P6)
+            time.sleep(2.5)
             
-            feedback = response.choices[0].message.content
-            
-            # Lógica de Pontuação
-            if "[PONTO_MÉRITO]" in feedback:
-                st.session_state.pontos += 20
-                feedback = feedback.replace("[PONTO_MÉRITO]", "\n\n🌟 **Excelente! Objetivo atingido. +20 Pontos.**")
-            elif "[MEIO_PONTO]" in feedback:
-                st.session_state.pontos += 10
-                feedback = feedback.replace("[MEIO_PONTO]", "\n\n📈 **Bom avanço! +10 Pontos.**")
+            try:
+                response = client.chat.completions.create(
+                    model="llama-3.3-70b-versatile",
+                    messages=[{"role": "system", "content": PROMPT_SISTEMA_HBM}] + st.session_state.chat_history,
+                    temperature=0.0
+                )
+                
+                feedback = response.choices[0].message.content
+                
+                # Gamificação P6
+                if "[PONTO_MÉRITO]" in feedback:
+                    st.session_state.pontos += 20
+                    feedback = feedback.replace("[PONTO_MÉRITO]", "\n\n✨ **Parabéns! Internalizaste o conhecimento. +20 pontos!**")
+                elif "[MEIO_PONTO]" in feedback:
+                    st.session_state.pontos += 10
+                    feedback = feedback.replace("[MEIO_PONTO]", "\n\n🚀 **Excelente progresso! Estás no caminho certo. +10 pontos!**")
 
-            placeholder.markdown(feedback)
-            st.session_state.chat_history.append({"role": "assistant", "content": feedback})
-            st.rerun()
+                st.markdown(feedback)
+                st.session_state.chat_history.append({"role": "assistant", "content": feedback})
+                st.rerun()
+                
+            except Exception:
+                st.error("Erro na ligação. Tente novamente.")
 
-        except Exception:
-            st.error("Erro de conexão. Tente novamente.")
-
-# --- 4. BOTÃO DE RESTAURAR (P1) ---
+# --- 4. BOTÃO DE RESTAURO (CENTRALIZADO) ---
 st.markdown("<br><br>", unsafe_allow_html=True)
-if st.button("🔄 Restaurar Chat (Nova Questão)", use_container_width=True):
-    st.session_state.chat_history = []
-    st.session_state.pontos = 0
-    st.rerun()
+col1, col2, col3 = st.columns([1,2,1])
+with col2:
+    if st.button("🔄 Restaurar Chat (Nova Questão)", use_container_width=True):
+        st.session_state.chat_history = []
+        st.session_state.pontos = 0
+        st.rerun()
