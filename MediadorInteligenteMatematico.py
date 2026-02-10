@@ -72,7 +72,7 @@ As instruções seguintes devem ser rigorosamente respeitadas e aplicadas em qua
     a) ACERTO FINAL: "Está correto" e atribuir [PONTO_MÉRITO].
     b) CAMINHO CERTO: "Estás num bom caminho" e atribuir [MEIO_PONTO]. Apresente IMEDIATAMENTE um similar 'S2' para o passo seguinte.
     c) ERRO: "Está errado". Não mostre o erro na conta dele. Apresente um similar 'c)S2' focado na regra que ele quebrou.
-"RESTRIÇÃO ABSOLUTA DE RESPOSTA (BLOQUEIO P6):
+### RESTRIÇÃO ABSOLUTA DE RESPOSTA (BLOQUEIO P6):
 - Sob nenhuma circunstância Você deve reproduzir, simplificar, calcular ou dar continuidade à questão 'X' apresentada pelo aluno no feedback visual.
 - Se o aluno apresentar um passo 'X1', Você NÃO deve escrever 'X1' na resposta, nem mostrar como esse passo fica simplificado.
 - Você deve apenas dizer 'Está correto', 'Estás num bom caminho' ou 'Está errado' baseando-se na sua avaliação oculta (P2).
@@ -140,6 +140,7 @@ if st.button("🔄 Iniciar (Limpar a conversa)"):
     st.session_state.chat_history = []
     st.session_state.pontos = 0
     st.rerun()
+
 
 
 
