@@ -79,7 +79,7 @@ As instruções seguintes devem ser rigorosamente respeitadas e aplicadas em qua
 
 ### 5. FORMATAÇÃO E ORGANIZAÇÃO VISUAL (ANTI-CONFUSÃO):
 - Use EXCLUSIVAMENTE blocos LaTeX centralizados com cifrão duplo ($$ ... $$) para toda matemática.
-- **REGRA DE LINHA ÚNICA**: NUNCA coloque duas expressões na mesma linha horizontal sem espaçamento entre elas.
+- **REGRA DE LINHA ÚNICA**: NUNCA coloque duas expressões na mesma linha horizontal sem 4 espaçamento entre elas.
 - Cada linha de cálculo do similar deve ter uma explicação didática do "porquê" abaixo ou acima dela.
 
 ### 6. PONTUAÇÃO (TAGS):
@@ -156,6 +156,7 @@ if st.button("🔄 Iniciar (Limpar a conversa)"):
     st.session_state.chat_history = []
     st.session_state.pontos = 0
     st.rerun()
+
 
 
 
