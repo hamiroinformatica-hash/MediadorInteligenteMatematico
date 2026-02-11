@@ -26,8 +26,8 @@ st.markdown(r"""
     .katex-display { 
         font-size: 1.4rem !important; /* Aumentei um pouco a fonte para acompanhar a tela maior */
         overflow-x: auto; 
-        padding: 15px; 
-        border-left: 8px solid #000; 
+        padding: 2px; 
+        border-left: 2px solid #000; 
         background: #fdfdfd;
         margin: 10px 0;
     }
@@ -119,6 +119,7 @@ if st.button("🔄 Restaurar Professor (Reiniciar Mediação)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
+
 
 
 
