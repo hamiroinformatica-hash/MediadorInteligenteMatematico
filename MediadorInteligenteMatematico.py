@@ -16,7 +16,7 @@ st.markdown(r"""
 
     /* 2. BARRA DE ROLAGEM GERAL EXTRA GROSSA (45px) */
     ::-webkit-scrollbar { width: 45px !important; }
-    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-track { background: #f1f1f199; }
     ::-webkit-scrollbar-thumb { background: #000; border: 5px solid #f1f1f1; }
 
     /* 3. TEXTO: QUEBRA AUTOMÁTICA (NUNCA TRANSBORDA) */
@@ -140,5 +140,6 @@ if st.button("🔄 Restaurar Professor (Reiniciar Mediação)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
+
 
 
