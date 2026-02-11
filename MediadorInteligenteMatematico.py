@@ -10,7 +10,7 @@ st.markdown(r"""
     <style>
     /* Barra de Rolagem Extra Grossa */
     ::-webkit-scrollbar { 
-        width: 35px !important; 
+        width: 45px !important; 
     }
     ::-webkit-scrollbar-track { 
         background: #f1f1f1; 
@@ -139,3 +139,4 @@ if st.button("🔄 Restaurar Professor (Reiniciar Mediação)"):
     st.session_state.solucao_oculta = None
     st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
+
