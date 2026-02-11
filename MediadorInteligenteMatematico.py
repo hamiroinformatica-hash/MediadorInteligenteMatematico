@@ -21,6 +21,16 @@ st.markdown(r"""
     .signature-footer { position: fixed; bottom: 0; left: 0; width: 100%; background: white; text-align: center; 
                         font-family: 'Algerian', serif; font-size: 16px; border-top: 2px solid #333; z-index: 1000; padding: 5px; }
     .footer-btn-container { position: fixed; bottom: 45px; left: 0; width: 100%; display: flex; justify-content: center; z-index: 1001; padding-bottom: 10px; }
+    
+    /* Ajuste de Matemática (LaTeX) */
+    .katex-display { 
+        font-size: 1.4rem !important; /* Aumentei um pouco a fonte para acompanhar a tela maior */
+        overflow-x: auto; 
+        padding: 15px; 
+        border-left: 8px solid #000; 
+        background: #fdfdfd;
+        margin: 10px 0;
+    }
     </style>
     <div class="signature-footer">HBM</div>
 """, unsafe_allow_html=True)
@@ -109,4 +119,5 @@ if st.button("🔄 Restaurar Professor (Reiniciar Mediação)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
+
 
