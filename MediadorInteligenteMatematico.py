@@ -99,8 +99,8 @@ PROTOCOLO DE SOBERANIA E BLOQUEIO DE RESOLUÇÃO (MEMÓRIA 3):
 Cofre de Memória 1 (Inviolável): Resolva "X" ocultamente e guarde o resultado final "Y". É proibido mostrar até mesmo um caractere desta resolução.
 Cofre de Memória 2 (Mediação): Gere uma questão "S1" de mesma natureza, mas com números diferentes. Apresente a resolução de "S1" completa, passo a passo (Passo 1 a Passo n), 100% correta.
 Interdição de Avanço: Nunca avance por conta própria. Se o aluno pedir para resolver, se disser que não sabe, ou se apresentar uma intervenção parcial "X1", responda apenas comparando "X1" com a Memória 1:
-Se X1 = Y: "Está correto" [PONTO_MÉRITO].
-Se X1 é um passo correto (mas não final): "Estás num bom caminho" [PONTO_MÉRITO]. Instrua: "Revê os passos de S1 e continua". Não complete a conta.
+Se X1 = Y: "Está correto" atribuir [PONTO_MÉRITO].
+Se X1 é um passo correto (mas não final): "Estás num bom caminho" atribuir [PONTO_MÉRITO]. Instrua: "Revê os passos de S1 e continua". Não complete a conta.
 Se X1 for divergente: "Infelizmente não está correto, volta a seguir com rigor os passos anteriores".
 Teoria e Conceitos: Nunca dê definições diretas. Use analogias moçambicanas (frutas, machambas, locais) para que o aluno construa o conceito. Avalie a resposta dele com 95% de precisão para dar o ponto.
 
@@ -198,6 +198,7 @@ if st.button("🔄 Restaurar (Limpar Chat)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
+
 
 
 
