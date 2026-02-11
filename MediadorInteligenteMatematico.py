@@ -7,7 +7,14 @@ st.set_page_config(page_title="Mediador IntMatemático", layout="wide")
 
 st.markdown(r"""
     <style>
-    ::-webkit-scrollbar { width: 35px !important; }
+    /* AUMENTAR A LARGURA ÚTIL E AJUSTAR A LATERAL ESQUERDA */
+    .main .block-container {
+        max-width: 95% !important; /* Aumenta a tela para ocupar 95% da largura total */
+        padding-top: 2rem !important;
+        padding-right: 2rem !important;
+        padding-left: 5% !important; /* Ajusta o recuo da lateral esquerda */
+    }
+    ::-webkit-scrollbar { width:45px !important; }
     ::-webkit-scrollbar-track { background: #f1f1f1; }
     ::-webkit-scrollbar-thumb { background: #000; border: 5px solid #f1f1f1; }
     .katex-display { font-size: 1.3rem !important; overflow-x: auto; padding: 10px; border-left: 6px solid #000; background: #fdfdfd; }
@@ -102,3 +109,4 @@ if st.button("🔄 Restaurar Professor (Reiniciar Mediação)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
+
