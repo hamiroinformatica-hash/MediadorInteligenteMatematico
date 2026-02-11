@@ -126,11 +126,12 @@ Bloqueio de Passo Zero: A IA não deve dar nem o primeiro passo de X. Se o aluno
  - **Mediação**: Apresente S1 verticalmente. Exemplo:
   Apresenta a questão 50% similar à questão apresentada pelo aluno, 50% da mesma natureza, mas 100% diferentes. 
   $$ x^2 - 9 = 0 $$
-  Segue a explicação didática do passo 1
-  Segue a explicação didática do passo 2
-  $$ Passo 2: \iff x^2 = 9 $$
-  Segue a explicação didática do passo 2
-  $$ Passo 3: \iff x = \pm 3 $$
+  Segue a explicação didática do que foi fito no passo seguinte
+  Passo 1:
+  $$  \iff x^2 = 9 $$
+  Segue a explicação didática do que foi fito no passo seguinte
+  Passo 2:
+  $$  \iff x = \pm 3 $$
   E assim sucessivamente até o último passo.
 3. Finalize dizendo: "Siga a mesma lógica para resolver a sua questão X. Aguardo a sua primeira intervenção (X1)".
 4. **PROIBIÇÃO TOTAL**: Não dê o primeiro passo de X. Não mostre o resultado Y de X.
@@ -204,6 +205,7 @@ if st.button("🔄 Restaurar (Limpar Chat)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
+
 
 
 
