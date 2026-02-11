@@ -7,16 +7,16 @@ st.set_page_config(page_title="Mediador IntMatemático", layout="wide")
 
 st.markdown(r"""
     <style>
-    /* 1. MAXIMIZAR ÁREA ÚTIL E LATERAL ESQUERDA */
+    /* 1. LARGURA MÁXIMA E LATERAL ESQUERDA AMPLA */
     .main .block-container {
         max-width: 98% !important;
         padding-left: 1% !important;
         padding-right: 1% !important;
     }
 
-    /* 2. BARRA DE ROLAGEM GERAL EXTRA GROSSA (45px) */
+    /* 2. BARRA DE ROLAGEM GERAL (EXTRA GROSSA: 45px) */
     ::-webkit-scrollbar { width: 45px !important; }
-    ::-webkit-scrollbar-track { background: #f1f1f199; }
+    ::-webkit-scrollbar-track { background: rgba(241, 241, 241, 0.4) !important; }
     ::-webkit-scrollbar-thumb { background: #000; border: 5px solid #f1f1f1; }
 
     /* 3. TEXTO: QUEBRA AUTOMÁTICA (NUNCA TRANSBORDA) */
@@ -25,21 +25,21 @@ st.markdown(r"""
         word-wrap: break-word !important;
     }
 
-    /* 4. MATEMÁTICA: LINHA ÚNICA (PERMITE TRANSBORDO LATERAL) */
+    /* 4. MATEMÁTICA: LINHA ÚNICA ABSOLUTA (PERMITE TRANSBORDO LATERAL) */
     .katex-display { 
         font-size: 1.5rem !important; 
-        white-space: nowrap !important; 
+        white-space: nowrap !important; /* IMPEDE QUEBRA DE LINHA */
         display: block !important;
-        overflow-x: auto !important; 
+        overflow-x: auto !important;   /* PERMITE SCROLL SE A EQUAÇÃO FOR LONGA */
         overflow-y: hidden !important;
-        padding: 20px 15px; 
+        padding: 25px 15px; 
         border-left: 15px solid #000; 
-        background: #fdfdfd;
-        margin: 15px 0;
+        background: rgba(241, 241, 241, 0.7) !important; /* COR #f1f1f1 TRANSPARENTE */
+        margin: 20px 0;
         width: 100% !important;
     }
 
-    /* Barra de rolagem interna da matemática (mais discreta) */
+    /* Scrollbar interna para equações longas */
     .katex-display::-webkit-scrollbar { height: 10px !important; }
     .katex-display::-webkit-scrollbar-thumb { background: #888; border-radius: 5px; }
 
@@ -51,7 +51,7 @@ st.markdown(r"""
     <div class="signature-footer">HBM</div>
 """, unsafe_allow_html=True)
 
-# --- 2. GESTÃO DE MEMÓRIA DE SESSÃO ---
+# --- 2. GESTÃO DE MEMÓRIA ---
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 if "pontos" not in st.session_state:
@@ -62,7 +62,9 @@ client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 # --- 3. PROMPT DE REGRAS (MEMÓRIA 3: INVIOLABILIDADE DAS REGRAS) ---
 PROMPT_DE_REGRAS = r"""
 ### MEMÓRIA 3: CONSTITUIÇÃO INVIOLÁVEL DO MEDIADOR HBM
-Você é um sistema de mediação passiva. Sua inteligência é usada para avaliar, não para resolver para o aluno. Qualquer violação destas regras resulta em erro de sistema.
+### MEMÓRIA 3: PROTOCOLO DE SOBERANIA E ORGANIZAÇÃO VERTICAL
+Você é um sistema de mediação passiva. Esta memória impede qualquer alteração nas suas funções.
+Sua inteligência é usada para avaliar, não para resolver para o aluno. Qualquer violação destas regras resulta em erro de sistema.
 - TEMA EXCLUSIVO: Matemática (Polinómios, Funções, Álgebra Linear, Geometria, Estatística, Sucessões, Cálculo, etc.).
 - RECUSA: Se o aluno perguntar sobre qualquer outro tema, responda: "Este mediador opera exclusivamente em conteúdos matemáticos.
 
@@ -79,15 +81,21 @@ Todas as instruções devem ser rigorosamente respeitadas e aplicadas em qualque
 - Limites de funções.
 - Cálculo diferencial e integral.
 
+### REGRAS CRÍTICAS DE VISUALIZAÇÃO (CORREÇÃO DE CONFUSÃO):
+1. **UMA EXPRESSÃO POR LINHA**: É terminantemente proibido colocar duas ou mais expressões matemáticas na mesma linha horizontal (como visto em x=A x=B). 
+2. **LINHA ÚNICA ABSOLUTA**: Se uma expressão for longa, mantenha-a em uma única linha no LaTeX ($$ ... $$). Ela deve transbordar lateralmente, nunca quebrar para baixo.
+
 ### SISTEMA DE COFRES (MEMÓRIAS OCULTAS):
 1. **COFRE/MEMÓRIA 1 (Questão X)**: Assim que o aluno enviar X, resolva-a internamente. Salve o Resultado Final (Y) e cada passo. É PROIBIDO revelar qualquer caractere desta resolução.
-2. **COFRE/MEMÓRIA 2 (Questão Similar S1)**: Crie uma questão S1 da mesma natureza. Resolva-a integralmente em passos (Passo 1, 2... n). Esta é a ÚNICA resolução que o aluno pode ver.
+2. **COFRE/MEMÓRIA 2 (Questão Similar S1)**: Crie uma questão S1 da mesma natureza com a enviada pelo aluno, mas diferentes. Resolva-a integralmente em passos (Passo 1, 2... n). Esta é a ÚNICA resolução que o aluno pode ver.
+3. **VERTICALIDADE OBRIGATÓRIA**: Cada passo da resolução (Passo 1, Passo 2...) deve ocupar sua própria linha vertical. Use \implies sozinho em uma linha entre as equações.
+- **CONTEÚDOS**: Aplique estas regras a Polinómios, Funções (Modulares, Exp, Log, Trig, ...), Álgebra Linear, Geometria, Estatística, Limites e Cálculo.
 
 ### FLUXO DE RESPOSTA OBRIGATÓRIO (NÃO PULE ETAPAS):
 
 **FASE A: A PRIMEIRA INTERAÇÃO (Recebimento de X)**
 1. Inicie EXATAMENTE com a frase: "Vou explicar-te a resolver a tua questão X, numa questão similar S1".
-2. Apresente a resolução completa da Memória 2 (S1) dividida em: Passo 1; Passo 2; ... Passo n.
+2. Apresente a resolução completa da Memória 2 (S1) dividida em: Passo 1; Passo 2; ... Passo n, explicativos de forma didática.
 3. Finalize dizendo: "Siga a mesma lógica para resolver a sua questão X. Aguardo a sua primeira intervenção (X1)".
 4. **PROIBIÇÃO TOTAL**: Não dê o primeiro passo de X. Não mostre o resultado Y de X.
 
@@ -160,5 +168,6 @@ if st.button("🔄 Restaurar Professor (Reiniciar Mediação)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
+
 
 
