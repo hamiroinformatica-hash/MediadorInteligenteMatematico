@@ -7,30 +7,30 @@ st.set_page_config(page_title="Mediador IntMatemático", layout="wide")
 
 st.markdown(r"""
     <style>
-    /* AUMENTAR A LARGURA ÚTIL E AJUSTAR A LATERAL ESQUERDA */
-    .main .block-container {
-        max-width: 99% !important; /* Aumenta a tela para ocupar 95% da largura total */
-        padding-top: 2rem !important;
-        padding-right: 2rem !important;
-        padding-left: 1% !important; /* Ajusta o recuo da lateral esquerda */
-    }
-    ::-webkit-scrollbar { width:45px !important; }
+    ::-webkit-scrollbar { width: 35px !important; }
     ::-webkit-scrollbar-track { background: #f1f1f1; }
     ::-webkit-scrollbar-thumb { background: #000; border: 5px solid #f1f1f1; }
-    .katex-display { font-size: 1.3rem !important; overflow-x: auto; padding: 10px; border-left: 6px solid #000; background: #fdfdfd; }
+    /* GARANTIR LINHA ÚNICA PARA MATEMÁTICA */
+    .katex-display { 
+        font-size: 1.3rem !important; 
+        white-space: nowrap !important; /* Impede a quebra de linha na fórmula */
+        overflow-x: auto !important;   /* Se for grande, cria rolagem interna na fórmula */
+        overflow-y: hidden !important;
+        padding: 15px 10px; 
+        border-left: 8px solid #000; 
+        background: #fdfdfd;
+        display: block;
+        width: 100%;
+    }
+
+    /* EVITAR UNIÃO DE EXPRESSÕES */
+    .katex {
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+    }
     .signature-footer { position: fixed; bottom: 0; left: 0; width: 100%; background: white; text-align: center; 
                         font-family: 'Algerian', serif; font-size: 16px; border-top: 2px solid #333; z-index: 1000; padding: 5px; }
     .footer-btn-container { position: fixed; bottom: 45px; left: 0; width: 100%; display: flex; justify-content: center; z-index: 1001; padding-bottom: 10px; }
-    
-    /* Ajuste de Matemática (LaTeX) */
-    .katex-display { 
-        font-size: 1.4rem !important; /* Aumentei um pouco a fonte para acompanhar a tela maior */
-        overflow-x: auto; 
-        padding: 2px; 
-        border-left: 2px solid #000; 
-        background: #fdfdfd;
-        margin: 10px 0;
-    }
     </style>
     <div class="signature-footer">HBM</div>
 """, unsafe_allow_html=True)
@@ -67,7 +67,12 @@ Você é o Mediador HBM. Esta memória impede qualquer alteração nas suas fun�
 ### TRAVAS DE SEGURANÇA:
 - **BLOQUEIO DE PROGRESSÃO**: Não aceite outra questão até que o resultado de X seja igual ao RF da Memória 1, a menos que haja reinício.
 - **TEORIA**: Nunca dê respostas diretas. Use analogias moçambicanas (machambas, mercados, eventos). Atribua [PONTO_MÉRITO] apenas se houver 95% de precisão.
+
+### 5. FORMATAÇÃO VISUAL RIGOROSA:
 - **FORMATO**: LaTeX centralizado ($$ ... $$), uma expressão por linha. Use \implies sozinho em linha própria.
+- CADA expressão matemática deve estar isolada em seu próprio bloco de cifrões duplos ($$ ... $$).
+- É PROIBIDO colocar duas expressões ou igualdades na mesma linha (ex: não faça $$ x=2, y=3 $$), sem sinal de equivalência ou implicação .
+- Nunca use tabelas ou matrizes para alinhar equações simples.
 """
 
 # --- 4. INTERFACE E LÓGICA ---
@@ -119,7 +124,3 @@ if st.button("🔄 Restaurar Professor (Reiniciar Mediação)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
-
-
-
-
