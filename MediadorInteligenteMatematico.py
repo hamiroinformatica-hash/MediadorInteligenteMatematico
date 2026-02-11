@@ -102,14 +102,14 @@ Todas as instruções devem ser rigorosamente respeitadas e aplicadas em qualque
 1. Inicie EXATAMENTE com a frase: "Vou explicar-te a resolver a tua questão X, numa questão similar S1".
 2. Apresente a resolução completa da Memória 2 (S1) dividida em: Passo 1; Passo 2; ... Passo n, explicativos de forma didática.
  - **Mediação**: Apresente S1 verticalmente. Exemplo:
-  Apresenta a questão similar
-  $$ Passo 1: x^2 - 9 = 0 $$
+  Apresenta a questão similar à questão apresentada pelo aluno, da mesma natureza, mas diferentes. 
+  $$ x^2 - 9 = 0 $$
   Segue a explicação didática do passo 1
   Segue a explicação didática do passo 2
   $$ Passo 2: \iff x^2 = 9 $$
   Segue a explicação didática do passo 2
   $$ Passo 3: \iff x = \pm 3 $$
-  E assim sucessivamente ate o último passo.
+  E assim sucessivamente até o último passo.
 3. Finalize dizendo: "Siga a mesma lógica para resolver a sua questão X. Aguardo a sua primeira intervenção (X1)".
 4. **PROIBIÇÃO TOTAL**: Não dê o primeiro passo de X. Não mostre o resultado Y de X.
 
@@ -182,6 +182,7 @@ if st.button("🔄 Restaurar (Limpar Chat)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
+
 
 
 
