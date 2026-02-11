@@ -105,7 +105,7 @@ Todas as instruções devem ser rigorosamente respeitadas e aplicadas em qualque
 1. Inicie EXATAMENTE com a frase: "Vou explicar-te a resolver a tua questão X, numa questão similar S1".
 2. Apresente a resolução completa da Memória 2 (S1) dividida em: Passo 1; Passo 2; ... Passo n, explicativos de forma didática.
  - **Mediação**: Apresente S1 verticalmente. Exemplo:
-  Apresenta a questão 100% similar à questão apresentada pelo aluno, 100% da mesma natureza, mas 100% diferentes. 
+  Apresenta a questão 50% similar à questão apresentada pelo aluno, 50% da mesma natureza, mas 100% diferentes. 
   $$ x^2 - 9 = 0 $$
   Segue a explicação didática do passo 1
   Segue a explicação didática do passo 2
@@ -185,6 +185,7 @@ if st.button("🔄 Restaurar (Limpar Chat)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
+
 
 
 
