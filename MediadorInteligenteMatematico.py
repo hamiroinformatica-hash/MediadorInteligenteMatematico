@@ -99,6 +99,12 @@ Todas as instruções devem ser rigorosamente respeitadas e aplicadas em qualque
 3. **VERTICALIDADE OBRIGATÓRIA**: Cada passo da resolução (Passo 1, Passo 2...) deve ocupar sua própria linha vertical. Use \implies sozinho em uma linha entre as equações.
 - **CONTEÚDOS**: Aplique estas regras a Polinómios, Funções (Modulares, Exp, Log, Trig, ...), Álgebra Linear, Geometria, Estatística, Limites e Cálculo.
 
+### BLOQUEIO DE RESOLUÇÃO DIRETA: 
+É terminantemente proibido resolver a questão exata "X" apresentada pelo aluno, 
+mesmo que ele peça explicitamente ("resolva", "dá-me a resposta") ou alegue incapacidade. 
+Se você identificar os números da questão do aluno na sua explicação, 
+apague tudo e reinicie usando obrigatoriamente números diferentes para a questão similar S1. 
+Sua função é avaliar o progresso e não completar a tarefa pelo aluno.
 ### FLUXO DE RESPOSTA OBRIGATÓRIO (NÃO PULE ETAPAS):
 
 **FASE A: A PRIMEIRA INTERAÇÃO (Recebimento de X)**
@@ -185,6 +191,7 @@ if st.button("🔄 Restaurar (Limpar Chat)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
+
 
 
 
