@@ -14,34 +14,37 @@ st.markdown(r"""
         padding-right: 1% !important;
     }
 
-    /* 2. BARRA DE ROLAGEM GERAL (EXTRA GROSSA: 45px) */
+    /* 2. BARRA DE ROLAGEM GERAL (45px) */
     ::-webkit-scrollbar { width: 45px !important; }
     ::-webkit-scrollbar-track { background: rgba(241, 241, 241, 0.4) !important; }
     ::-webkit-scrollbar-thumb { background: #000; border: 5px solid #f1f1f1; }
 
-    /* 3. TEXTO: QUEBRA AUTOMÁTICA (NUNCA TRANSBORDA) */
+    /* 3. TEXTO: QUEBRA AUTOMÁTICA */
     .stMarkdown p {
         white-space: normal !important;
         word-wrap: break-word !important;
     }
 
-    /* 4. MATEMÁTICA: LINHA ÚNICA ABSOLUTA (PERMITE TRANSBORDO LATERAL) */
+    /* 4. MATEMÁTICA: UNIFORME, MENOR E INQUEBRÁVEL */
     .katex-display { 
-        font-size: 1.5rem !important; 
-        white-space: nowrap !important; /* IMPEDE QUEBRA DE LINHA */
+        font-size: 1.2rem !important; /* Tamanho menor e padronizado */
+        white-space: nowrap !important; /* Impede quebra interna da expressão */
         display: block !important;
-        overflow-x: auto !important;   /* PERMITE SCROLL SE A EQUAÇÃO FOR LONGA */
+        overflow-x: auto !important;   /* Transbordo lateral se for longa */
         overflow-y: hidden !important;
-        padding: 25px 15px; 
-        border-left: 15px solid #000; 
-        background: rgba(241, 241, 241, 0.7) !important; /* COR #f1f1f1 TRANSPARENTE */
-        margin: 20px 0;
+        padding: 20px 15px; 
+        border-left: 12px solid #000; 
+        background: rgba(241, 241, 241, 0.7) !important; /* #f1f1f1 Transparente */
+        margin: 15px 0;
         width: 100% !important;
     }
+    
+    /* Garantir que símbolos inline não fiquem maiores que o bloco */
+    .katex { font-size: 1.2rem !important; }
 
-    /* Scrollbar interna para equações longas */
-    .katex-display::-webkit-scrollbar { height: 10px !important; }
-    .katex-display::-webkit-scrollbar-thumb { background: #888; border-radius: 5px; }
+    /* Scrollbar interna discreta para fórmulas */
+    .katex-display::-webkit-scrollbar { height: 8px !important; }
+    .katex-display::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
 
     /* 5. ASSINATURA E BOTÕES FIXOS */
     .signature-footer { position: fixed; bottom: 0; left: 0; width: 100%; background: white; text-align: center; 
@@ -82,8 +85,10 @@ Todas as instruções devem ser rigorosamente respeitadas e aplicadas em qualque
 - Cálculo diferencial e integral.
 
 ### REGRAS CRÍTICAS DE VISUALIZAÇÃO (CORREÇÃO DE CONFUSÃO):
-1. **UMA EXPRESSÃO POR LINHA**: É terminantemente proibido colocar duas ou mais expressões matemáticas na mesma linha horizontal (como visto em x=A x=B). 
-2. **LINHA ÚNICA ABSOLUTA**: Se uma expressão for longa, mantenha-a em uma única linha no LaTeX ($$ ... $$). Ela deve transbordar lateralmente, nunca quebrar para baixo.
+1. **UMA EXPRESSÃO POR LINHA**: É terminantemente proibido colocar duas expressões matemáticas na mesma linha horizontal.
+2. **PADRONIZAÇÃO DE TAMANHO**: Use sempre o formato display ($$ ... $$) para todas as expressões, garantindo uniformidade visual.
+3. **CONECTORES LÓGICOS**: Cada linha de cálculo subsequente deve começar obrigatoriamente com um sinal de equivalência ($\iff$) ou implicação ($\implies$), isolados em sua própria lógica.
+4. **LINHA ÚNICA ABSOLUTA**: Se uma expressão for longa, mantenha-a em uma única linha no LaTeX. Ela deve transbordar lateralmente no bloco cinza, nunca quebrar para uma linha abaixo dentro do mesmo bloco.
 
 ### SISTEMA DE COFRES (MEMÓRIAS OCULTAS):
 1. **COFRE/MEMÓRIA 1 (Questão X)**: Assim que o aluno enviar X, resolva-a internamente. Salve o Resultado Final (Y) e cada passo. É PROIBIDO revelar qualquer caractere desta resolução.
@@ -96,6 +101,10 @@ Todas as instruções devem ser rigorosamente respeitadas e aplicadas em qualque
 **FASE A: A PRIMEIRA INTERAÇÃO (Recebimento de X)**
 1. Inicie EXATAMENTE com a frase: "Vou explicar-te a resolver a tua questão X, numa questão similar S1".
 2. Apresente a resolução completa da Memória 2 (S1) dividida em: Passo 1; Passo 2; ... Passo n, explicativos de forma didática.
+ - **Mediação**: Apresente S1 verticalmente. Exemplo:
+  $$ Passo 1: x^2 - 9 = 0 $$
+  $$ \iff x^2 = 9 $$
+  $$ \iff x = \pm 3 $$
 3. Finalize dizendo: "Siga a mesma lógica para resolver a sua questão X. Aguardo a sua primeira intervenção (X1)".
 4. **PROIBIÇÃO TOTAL**: Não dê o primeiro passo de X. Não mostre o resultado Y de X.
 
@@ -163,11 +172,12 @@ if entrada:
 
 # --- 5. BOTÃO DE RESTAURAÇÃO CENTRALIZADO ---
 st.markdown('<div class="footer-btn-container">', unsafe_allow_html=True)
-if st.button("🔄 Restaurar Professor (Reiniciar Mediação)"):
+if st.button("🔄 Restaurar (Limpar Chat)"):
     st.session_state.chat_history = []
     st.session_state.pontos = 0
     st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
+
 
 
 
