@@ -9,10 +9,10 @@ st.markdown(r"""
     <style>
     /* AUMENTAR A LARGURA ÚTIL E AJUSTAR A LATERAL ESQUERDA */
     .main .block-container {
-        max-width: 95% !important; /* Aumenta a tela para ocupar 95% da largura total */
+        max-width: 99% !important; /* Aumenta a tela para ocupar 95% da largura total */
         padding-top: 2rem !important;
         padding-right: 2rem !important;
-        padding-left: 5% !important; /* Ajusta o recuo da lateral esquerda */
+        padding-left: 1% !important; /* Ajusta o recuo da lateral esquerda */
     }
     ::-webkit-scrollbar { width:45px !important; }
     ::-webkit-scrollbar-track { background: #f1f1f1; }
@@ -119,5 +119,6 @@ if st.button("🔄 Restaurar Professor (Reiniciar Mediação)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
+
 
 
