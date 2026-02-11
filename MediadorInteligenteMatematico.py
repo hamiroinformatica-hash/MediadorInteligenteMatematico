@@ -5,47 +5,45 @@ import time
 # --- 1. CONFIGURAÇÃO DE INTERFACE ---
 st.set_page_config(page_title="Mediador IntMatemático", layout="wide")
 
-import streamlit as st
-from groq import Groq
-import time
-
-# --- 1. CONFIGURAÇÃO DE INTERFACE ---
-st.set_page_config(page_title="Mediador IntMatemático", layout="wide")
-
 st.markdown(r"""
     <style>
-    /* AUMENTAR ÁREA ÚTIL */
+    /* 1. MAXIMIZAR ÁREA ÚTIL E LATERAL ESQUERDA */
     .main .block-container {
-        max-width: 97% !important;
-        padding-left: 2% !important;
-        padding-right: 2% !important;
+        max-width: 98% !important;
+        padding-left: 1% !important;
+        padding-right: 1% !important;
     }
 
-    /* BARRA DE ROLAGEM GERAL (GROSSA) */
+    /* 2. BARRA DE ROLAGEM GERAL EXTRA GROSSA (45px) */
     ::-webkit-scrollbar { width: 45px !important; }
     ::-webkit-scrollbar-track { background: #f1f1f1; }
     ::-webkit-scrollbar-thumb { background: #000; border: 5px solid #f1f1f1; }
 
-    /* TEXTO: QUEBRA AUTOMÁTICA (NUNCA TRANSBORDA) */
+    /* 3. TEXTO: QUEBRA AUTOMÁTICA (NUNCA TRANSBORDA) */
     .stMarkdown p {
         white-space: normal !important;
         word-wrap: break-word !important;
     }
 
-    /* MATEMÁTICA: LINHA ÚNICA (TRANSBORDO LATERAL PERMITIDO) */
+    /* 4. MATEMÁTICA: LINHA ÚNICA (PERMITE TRANSBORDO LATERAL) */
     .katex-display { 
-        font-size: 1.4rem !important; 
+        font-size: 1.5rem !important; 
         white-space: nowrap !important; 
         display: block !important;
         overflow-x: auto !important; 
         overflow-y: hidden !important;
         padding: 20px 15px; 
-        border-left: 12px solid #000; 
+        border-left: 15px solid #000; 
         background: #fdfdfd;
         margin: 15px 0;
+        width: 100% !important;
     }
 
-    /* ASSINATURA E BOTÕES */
+    /* Barra de rolagem interna da matemática (mais discreta) */
+    .katex-display::-webkit-scrollbar { height: 10px !important; }
+    .katex-display::-webkit-scrollbar-thumb { background: #888; border-radius: 5px; }
+
+    /* 5. ASSINATURA E BOTÕES FIXOS */
     .signature-footer { position: fixed; bottom: 0; left: 0; width: 100%; background: white; text-align: center; 
                         font-family: 'Algerian', serif; font-size: 16px; border-top: 2px solid #333; z-index: 1000; padding: 5px; }
     .footer-btn-container { position: fixed; bottom: 45px; left: 0; width: 100%; display: flex; justify-content: center; z-index: 1001; }
@@ -142,4 +140,5 @@ if st.button("🔄 Restaurar Professor (Reiniciar Mediação)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
+
 
