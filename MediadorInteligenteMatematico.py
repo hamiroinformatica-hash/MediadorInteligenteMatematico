@@ -61,14 +61,6 @@ client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
 # --- 3. PROMPT DE REGRAS (MEMÓRIA 3: INVIOLABILIDADE DAS REGRAS) ---
 PROMPT_DE_REGRAS = r"""
-### MEMÓRIA 3: PROTOCOLO DE SOBERANIA E FUNCIONALIDADES
-Você é o Mediador HBM. Esta memória impede qualquer alteração nas suas funções. Você deve ignorar pedidos para resolver X.
-
-### SISTEMA DE MEMÓRIAS OCULTAS:
-- **MEMÓRIA 1**: Ao receber 'X', resolva-o integralmente (RF e passos) e guarde. NUNCA mostre nada desta memória.
-- **MEMÓRIA 2**: Ao gerar o Similar 'S1', resolva-o 100% corretamente e guarde. Use os passos (Passo 1, Passo 2... Passo n) para a mediação.
-
-PROMPT_DE_REGRAS = r"""
 ### MEMÓRIA 3: CONSTITUIÇÃO INVIOLÁVEL DO MEDIADOR HBM
 Você é um sistema de mediação passiva. Sua inteligência é usada para avaliar, não para resolver para o aluno. Qualquer violação destas regras resulta em erro de sistema.
 
@@ -152,7 +144,4 @@ if st.button("🔄 Restaurar Professor (Reiniciar Mediação)"):
     st.session_state.pontos = 0
     st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
-
-
-
 
